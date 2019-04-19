@@ -1,5 +1,5 @@
 function layout(resolve) {
-    return require(['./views/layout/index.vue'], resolve);
+    return require(['./views/web/layout.vue'], resolve);
 }
 
 const routers = [{
@@ -10,23 +10,23 @@ const routers = [{
         {
             path: '',
             name: 'index',
-            component: (resolve) => require(['./views/default/index.vue'], resolve)
+            component: (resolve) => require(['./views/web/index.vue'], resolve)
         }, {
             path: 'novel',
             name: 'novel',
-            component: (resolve) => require(['./views/enjoy/novel/index.vue'], resolve)
+            component: (resolve) => require(['./views/web/enjoy/novel/index.vue'], resolve)
         }, {
             path: 'music',
             name: 'music',
-            component: (resolve) => require(['./views/enjoy/music/index.vue'], resolve)
+            component: (resolve) => require(['./views/web/enjoy/music/index.vue'], resolve)
         }, {
             path: 'video',
             name: 'video',
-            component: (resolve) => require(['./views/enjoy/video/index.vue'], resolve)
+            component: (resolve) => require(['./views/web/enjoy/video/index.vue'], resolve)
         }, {
             path: 'album',
             name: 'album',
-            component: (resolve) => require(['./views/enjoy/album/index.vue'], resolve)
+            component: (resolve) => require(['./views/web/enjoy/album/index.vue'], resolve)
         }, {
             path: '*',
             name: '404',
