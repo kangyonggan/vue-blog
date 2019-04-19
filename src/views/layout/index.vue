@@ -23,20 +23,35 @@
     };
 </script>
 
-<style scoped lang="less">
+<style lang="less">
     .layout {
+        background: #fafafa;
         width: 100%;
         height: 100%;
         position: relative;
     }
 
     .container {
-        min-width: 1288px;
         min-height: 100%;
-        margin-bottom: -60px;
+        margin-bottom: -200px;
+    }
+
+    .content {
+        width: 1024px;
+        margin: 0 auto;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
     }
 
     .empty {
-        height: 60px;
+        height: 200px;
     }
 </style>
