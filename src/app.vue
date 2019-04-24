@@ -3,18 +3,7 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {};
-        },
-        mounted() {
-
-        },
-        beforeDestroy() {
-
-        },
-        methods: {}
-    };
+    export default {};
 </script>
 
 <style lang="less">

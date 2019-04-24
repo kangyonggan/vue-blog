@@ -3,13 +3,14 @@ import VueRouter from 'vue-router';
 import Routers from './router';
 import Vuex from 'vuex';
 import iView from 'iview';
-import 'iview/dist/styles/iview.css';
+import '../my-theme/dist/iview.css';
 import Util from './libs/util';
 import App from './app.vue';
 import './libs/http';
 import './components/index';
 import env from './config/env';
 import './libs/common';
+import StoreApp from './store/app';
 
 if (env === 'mock') {
     require('./mock');
@@ -37,18 +38,9 @@ router.afterEach(() => {
     window.scrollTo(0, 0);
 });
 
-
-const store = new Vuex.Store({
-    state: {},
-    getters: {},
-    mutations: {},
-    actions: {}
-});
-
-
 new Vue({
     el: '#app',
     router: router,
-    store: store,
+    store: {StoreApp},
     render: h => h(App)
 });

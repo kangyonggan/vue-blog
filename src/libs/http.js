@@ -42,11 +42,6 @@ class HttpRequest {
             let data = Util.decrypt(res.data);
             this.destroy(url);
             if (data.respCo === '0000') {
-                const token = res.headers[Util.tokenKey];
-                if (token) {
-                    Util.setToken(token);
-                }
-
                 // 成功
                 return data;
             } else {

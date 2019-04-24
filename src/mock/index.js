@@ -1,12 +1,12 @@
 import Mock from 'mockjs';
 
-import success from './success';
+import navList from './navList';
 
 /**
- * 登录
+ * 查询导航栏
  */
-Mock.mock(/login/, () => {
-    return success;
+Mock.mock('navList', () => {
+    return navList;
 });
 
 export default Mock;

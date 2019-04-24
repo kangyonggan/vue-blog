@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import CryptoJS from 'crypto-js';
+import env from '@/config/env';
 
 let util = {};
 
@@ -56,38 +57,6 @@ util.setToken = function (token) {
 };
 
 /**
- * 拼接请求参数
- *
- * @param data
- * @returns {*}
- */
-util.params = function (data) {
-    if (data.constructor !== Object) {
-        return data;
-    }
-
-    let arr = [];
-    for (let key in data) {
-        let obj = data[key];
-        if (obj === undefined || obj === null) {
-            continue;
-        }
-        if (obj.constructor === Array) {
-            let a = [];
-            for (let i in obj) {
-                a.push(encodeURI(params(obj[i])));
-            }
-            arr.push(key + '=' + a.join(','));
-        } else if (obj.constructor === Object) {
-            arr.push(key + '=' + params(obj));
-        } else {
-            arr.push(key + '=' + encodeURI(obj));
-        }
-    }
-    return arr;
-};
-
-/**
  * aes加密
  *
  * @param data
@@ -109,6 +78,9 @@ util.encrypt = function (data) {
  * @returns {Object}
  */
 util.decrypt = function (data) {
+    if (env === 'mock') {
+        return data;
+    }
     if (!data) {
         return {};
     }
