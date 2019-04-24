@@ -34,15 +34,15 @@
 
     .container {
         min-height: 100%;
-        margin-bottom: -100px;
+        margin-bottom: -360px;
     }
 
     .content {
-        width: 1288px;
+        width: 1200px;
         margin: 0 auto;
     }
 
     .empty {
-        height: 200px;
+        height: 360px;
     }
 </style>

@@ -23,12 +23,6 @@ export default {
         }, {
             dictCode: '/game',
             value: '游戏'
-        }, {
-            dictCode: '/about',
-            value: '关于我'
-        }, {
-            dictCode: '/login',
-            value: '登录'
         }]
     }
 };

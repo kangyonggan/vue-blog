@@ -7,9 +7,14 @@
 
             <div class="navList">
                 <router-link v-for="nav in navList" :key="nav.dictCode"
-                             :to="nav.dictCode" :class="activeNav===nav.dictCode?'active':''"
-                             :style="nav.dictCode==='/login'?'float: right':''">
+                             :to="nav.dictCode" :class="activeNav===nav.dictCode?'active':''">
                     {{nav.value}}
+                </router-link>
+            </div>
+
+            <div class="navList" style="float: right">
+                <router-link to="/login" :class="activeNav==='/login'?'active':''">
+                    登录
                 </router-link>
             </div>
         </div>
@@ -37,6 +42,7 @@
         },
         watch: {
             '$route'(newRoute) {
+                // 设置激活的导航栏
                 this.activeNav = newRoute.path;
             }
         }
@@ -61,12 +67,17 @@
             }
         }
 
-        .navList a {
-            margin-left: 10px;
-            margin-top: 16px;
+        .navList {
             float: left;
-            padding: 10px;
-            text-align: center;
+            margin-left: 20px;
+
+            a {
+                margin-left: 10px;
+                margin-top: 16px;
+                float: left;
+                padding: 10px;
+                text-align: center;
+            }
         }
 
         .navList a.active {
