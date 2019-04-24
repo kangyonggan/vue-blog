@@ -72,6 +72,21 @@ util.encrypt = function (data) {
 };
 
 /**
+ * url加密
+ *
+ * @param url
+ * @returns {string}
+ */
+util.encryptUrl = function (url) {
+    url = CryptoJS.AES.encrypt('' + url, util.AES_KEY, {
+        iv: util.AES_IV,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.ZeroPadding
+    }).toString();
+    return encodeURIComponent(url);
+};
+
+/**
  * aes解密
  *
  * @param data
@@ -92,6 +107,22 @@ util.decrypt = function (data) {
     }).toString(CryptoJS.enc.Utf8);
 
     return JSON.parse(decrypted);
+};
+
+/**
+ * url解密
+ *
+ * @param url
+ * @returns {Object}
+ */
+util.decryptUrl = function (url) {
+    url = CryptoJS.AES.decrypt(url, util.AES_KEY, {
+        iv: util.AES_IV,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.ZeroPadding
+    }).toString(CryptoJS.enc.Utf8);
+
+    return decodeURIComponent(url);
 };
 
 export default util;

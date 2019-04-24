@@ -4,7 +4,9 @@
             <Navbar/>
             <keep-alive>
                 <div class="main content">
+                    <div class="empty-30"></div>
                     <router-view/>
+                    <div class="empty-30"></div>
                 </div>
             </keep-alive>
             <div class="empty"></div>
@@ -37,12 +39,25 @@
         margin-bottom: -360px;
     }
 
+    .empty {
+        height: 360px;
+    }
+
+    .empty-30 {
+        clear: both;
+        height: 30px;
+    }
+
     .content {
         width: 1200px;
         margin: 0 auto;
     }
 
-    .empty {
-        height: 360px;
+    .pull-left {
+        float: left;
+    }
+
+    .pull-right {
+        float: right;
     }
 </style>

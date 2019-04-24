@@ -6,8 +6,8 @@ export default {
             dictCode: '/',
             value: '首页'
         }, {
-            dictCode: '/blog',
-            value: '博客'
+            dictCode: '/article',
+            value: '文章'
         }, {
             dictCode: '/novel',
             value: '小说'

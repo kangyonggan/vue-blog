@@ -15,6 +15,20 @@ const routers = [{
             },
             component: (resolve) => require(['./views/web/index.vue'], resolve)
         }, {
+            path: 'article',
+            name: 'article',
+            meta: {
+                title: '文章'
+            },
+            component: (resolve) => require(['./views/web/article/index.vue'], resolve)
+        }, {
+            path: 'article/:id',
+            name: 'articleDetail',
+            meta: {
+                title: '文章详情'
+            },
+            component: (resolve) => require(['./views/web/article/detail.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {

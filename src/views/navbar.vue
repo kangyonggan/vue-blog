@@ -7,14 +7,8 @@
 
             <div class="navList">
                 <router-link v-for="nav in navList" :key="nav.dictCode"
-                             :to="nav.dictCode" :class="activeNav===nav.dictCode?'active':''">
+                             :to="nav.dictCode" :class="isActive(nav.dictCode)?'active':''">
                     {{nav.value}}
-                </router-link>
-            </div>
-
-            <div class="navList" style="float: right">
-                <router-link to="/login" :class="activeNav==='/login'?'active':''">
-                    登录
                 </router-link>
             </div>
         </div>
@@ -26,12 +20,19 @@
         data() {
             return {
                 navList: [],
-                activeNav: '/'
+                currentUrl: '/'
             };
         },
+        methods: {
+            isActive: function (url) {
+                if (url === '/') {
+                    return this.currentUrl === '/';
+                }
+                return this.currentUrl.startsWith(url);
+            }
+        },
         mounted() {
-            // 设置激活的导航栏
-            this.activeNav = this.$route.path;
+            this.currentUrl = this.$route.path;
 
             // 设置导航栏
             this.http.get('navList').then(res => {
@@ -42,8 +43,7 @@
         },
         watch: {
             '$route'(newRoute) {
-                // 设置激活的导航栏
-                this.activeNav = newRoute.path;
+                this.currentUrl = newRoute.path;
             }
         }
     };
