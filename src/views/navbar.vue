@@ -25,6 +25,10 @@
             };
         },
         mounted() {
+            // 设置激活的导航栏
+            this.activeNav = this.$route.path;
+
+            // 设置导航栏
             this.http.get('navList').then(res => {
                 this.navList = res.data.navList;
             }).catch(res => {
