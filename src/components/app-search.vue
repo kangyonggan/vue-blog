@@ -11,7 +11,7 @@
                 <img src="/src/assets/images/search-top-icon.png" :style="'left:' + imgLeft + 'px'">
                 <div class="input">
                     <Icon type="ios-search" size="28" color="#bdc4d5"/>
-                    <input name="key"/>
+                    <input name="key" autocomplete='off' :placeholder="placeholder"/>
                     <div class="input-append">
                         <span>|</span>
                         <a href="javascript:">搜 索</a>
@@ -55,7 +55,8 @@
                     text: '小 说',
                     url: 'searchNovel'
                 }],
-                imgLeft: 25
+                imgLeft: 25,
+                placeholder: '请输入需要查找的文章标题，支持模糊搜索'
             };
         },
         methods: {
@@ -73,6 +74,12 @@
                         currIndex = i;
                     }
                     parent.children[i].setAttribute('class', '');
+
+                    if (i === 0) {
+                        this.placeholder = '请输入需要查找的文章标题，支持模糊搜索';
+                    } else if (i === 1) {
+                        this.placeholder = '请输入需要查找的小说名称或作者，支持模糊搜索';
+                    }
                 }
 
                 this.imgLeft = 25 + currIndex * 80;
@@ -147,6 +154,11 @@
                 border: none;
                 float: left;
                 color: #595959;
+            }
+
+            input::-webkit-input-placeholder {
+                font-size: 13px;
+                color: #999;
             }
 
             .input-append {
