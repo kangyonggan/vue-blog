@@ -1,5 +1,6 @@
 <template>
     <div :class="'panel ' + (float ? (float==='right'?'pull-right':'pull-left'):'')" :style="'width: ' + (width ? width + 'px' : '100%')">
+        <div class="panel-title" v-if="title">{{title}}</div>
         <slot></slot>
     </div>
 </template>
@@ -13,6 +14,10 @@
             width: {
                 required: false,
                 type: Number
+            },
+            title: {
+                required: false,
+                type: String
             },
             float: {
                 required: false,
@@ -30,8 +35,17 @@
 </script>
 
 <style scoped lang="less">
+    @import "../../my-theme/custom";
+
     .panel {
         background: #fff;
-        padding: 30px;
+
+        &-title {
+            color: #000;
+            padding: 10px;
+            font-weight: 500;
+            font-size: 18px;
+            border-bottom: 2px solid @primary-color;
+        }
     }
 </style>
