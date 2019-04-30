@@ -29,7 +29,6 @@
     .layout {
         background: #f5f6f8;
         width: 100%;
-        height: 100%;
         position: relative;
         font-size: 16px;
     }

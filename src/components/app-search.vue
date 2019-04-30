@@ -59,6 +59,11 @@
             };
         },
         methods: {
+            /**
+             * 激活Tab页
+             *
+             * @param e
+             */
             activeTab: function (e) {
                 let parent = e.target.parentNode;
 
