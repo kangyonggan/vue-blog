@@ -2,12 +2,15 @@
     <div>
         <AppSearch/>
 
-        <AppPanel width="800" float="left" title="全部文章">
+        <AppPanel :width="800" float="left" title="全部文章">
             <ul class="tab-content">
                 <li v-for="(article, index) in pageInfo.list" :key="index"
                     :class="{'no-border': index === pageInfo.pageSize - 1}">
                     <div class="left">
-                        <div class="title">阿里员工都在用的知识管理工具，究竟有何特别？</div>
+                        <div class="title">
+                            <span class="big">阿</span>
+                            <span>里员工都在用的知识管理工具，究竟有何特别？</span>
+                        </div>
                         <div class="summary">4月25日，蚂蚁金服集团的官方技术帐号“蚂蚁金服科技”，专文介绍了语雀。
                             “中国日报中文网”等网络媒体也进行了转载，引起了很大的反响。
                         </div>
@@ -25,7 +28,7 @@
             </ul>
         </AppPanel>
 
-        <AppPanel width="380" float="right" title="站长推荐">
+        <AppPanel :width="380" float="right" title="站长推荐">
             <ul class="hot-content">
                 <li v-for="(article, index) in pageInfo.list" :key="index"
                     :class="{'no-border': index === pageInfo.pageSize - 1}">
@@ -115,13 +118,22 @@
                 padding-left: 10px;
 
                 .title {
-                    font-size: 20px;
-                    font-weight: 500;
-                    color: #262626;
-                    cursor: pointer;
+                    span {
+                        font-size: 20px;
+                        font-weight: 500;
+                        color: #262626;
+                        cursor: pointer;
+                        float: left;
+                        line-height: 40px;
+                    }
+
+                    span.big {
+                        font-size: 40px;
+                    }
                 }
 
                 .summary {
+                    clear: both;
                     margin-top: 8px;
                     color: #595959;
                     font-size: 14px;
