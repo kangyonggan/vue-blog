@@ -171,7 +171,7 @@
         top: 50%;
         left: 50%;
         margin-left: -400px;
-        margin-top: -240px;
+        margin-top: -400px;
     }
 
     .st0 {
