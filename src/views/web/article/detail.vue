@@ -15,7 +15,7 @@
         },
         methods: {
             init: function () {
-                this.http.get('article/' + this.$route.params.id).then(res => {
+                this.http.post('article', {'articleId': encodeURIComponent(this.$route.params.id)}).then(res => {
                     this.article = res.data.article;
                 }).catch(res => {
                     this.error(res.respMsg);

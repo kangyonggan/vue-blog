@@ -1,6 +1,10 @@
 <template>
     <div>
-        index
+        <AppSearch/>
+
+        <AppPanel>
+            首页
+        </AppPanel>
     </div>
 </template>
 

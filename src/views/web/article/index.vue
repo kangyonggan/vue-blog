@@ -1,5 +1,7 @@
 <template>
     <div>
+        <AppSearch/>
+
         <AppPanel :width="800" float="left">
             <ul>
                 <li v-for="article in pageInfo.list" :key="article.articleId">

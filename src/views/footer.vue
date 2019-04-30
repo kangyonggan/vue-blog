@@ -103,7 +103,7 @@
                 .title {
                     font-weight: bold;
                     color: #333;
-                    padding: 3px 5px;
+                    padding: 5px;
                     display: inline-block;
                     border-bottom: 2px solid @primary-color;
                 }

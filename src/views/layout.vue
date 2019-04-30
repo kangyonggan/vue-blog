@@ -49,7 +49,7 @@
     }
 
     .content {
-        width: 1200px;
+        width: 1240px;
         margin: 0 auto;
     }
 
