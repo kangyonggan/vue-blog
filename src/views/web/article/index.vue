@@ -2,15 +2,15 @@
     <div>
         <AppSearch/>
 
-        <AppPanel :width="800" float="left" title="全部文章">
+        <AppPanel :width="800" float="left">
             <ul class="tab-content">
                 <li v-for="(article, index) in pageInfo.list" :key="index"
                     :class="{'no-border': index === pageInfo.pageSize - 1}">
                     <div class="left">
-                        <div class="title">
+                        <router-link class="title" :to="getEncryptLink(article.articleId)">
                             <span class="big">阿</span>
                             <span>里员工都在用的知识管理工具，究竟有何特别？</span>
-                        </div>
+                        </router-link>
                         <div class="summary">4月25日，蚂蚁金服集团的官方技术帐号“蚂蚁金服科技”，专文介绍了语雀。
                             “中国日报中文网”等网络媒体也进行了转载，引起了很大的反响。
                         </div>
@@ -21,9 +21,9 @@
                             <em>2019-04-30 16:08</em>
                         </div>
                     </div>
-                    <div class="right">
+                    <router-link class="right" :to="getEncryptLink(article.articleId)">
                         <img src="/src/assets/images/article.png">
-                    </div>
+                    </router-link>
                 </li>
             </ul>
         </AppPanel>
@@ -34,7 +34,7 @@
                     :class="{'no-border': index === pageInfo.pageSize - 1}">
                     <span class="index">{{formatIndex(index)}}</span>
                     <div class="right">
-                        <a>阿里员工都在用的知识管理工具，究竟有何特别？</a>
+                        <router-link :to="getEncryptLink(article.articleId)">阿里员工都在用的知识管理工具，究竟有何特别？</router-link>
 
                         <div class="info">
                             <span>Linux</span>

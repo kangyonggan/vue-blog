@@ -26,13 +26,13 @@
                         <a href="javascript:">Java</a>
                     </li>
                     <li>
-                        <a href="javascript:">Html</a>
-                    </li>
-                    <li>
                         <a href="javascript:">Linux</a>
                     </li>
                     <li>
                         <a href="javascript:">Spring Boot</a>
+                    </li>
+                    <li>
+                        <a href="javascript:">逆天邪神</a>
                     </li>
                 </ul>
             </div>
@@ -74,14 +74,13 @@
                         currIndex = i;
                     }
                     parent.children[i].setAttribute('class', '');
-
-                    if (i === 0) {
-                        this.placeholder = '请输入需要查找的文章标题，支持模糊搜索';
-                    } else if (i === 1) {
-                        this.placeholder = '请输入需要查找的小说名称或作者，支持模糊搜索';
-                    }
                 }
 
+                if (currIndex === 0) {
+                    this.placeholder = '请输入需要查找的文章标题，支持模糊搜索';
+                } else if (currIndex === 1) {
+                    this.placeholder = '请输入需要查找的小说名称或作者，支持模糊搜索';
+                }
                 this.imgLeft = 25 + currIndex * 80;
                 e.target.setAttribute('class', 'active');
             }

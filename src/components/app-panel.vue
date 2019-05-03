@@ -1,5 +1,5 @@
 <template>
-    <div :class="'panel ' + (float ? (float==='right'?'pull-right':'pull-left'):'')" :style="'width: ' + (width ? width + 'px' : '100%')">
+    <div :class="' panel ' + (float ? (float==='right'?'pull-right':'pull-left'):'')" :style="'width: ' + (width ? width + 'px' : '100%')">
         <div class="panel-title" v-if="title">{{title}}</div>
         <slot></slot>
     </div>
