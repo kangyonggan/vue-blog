@@ -3,15 +3,18 @@
         <div class="title">{{article.title}}</div>
 
         <div id="articleDetail">
-            <textarea v-model="article.content"></textarea>
+            <VueMarkdown :source="article.content" @rendered="rendered"></VueMarkdown>
         </div>
     </AppPanel>
 </template>
 
 <script>
-    import $script from 'scriptjs';
+    import VueMarkdown from 'vue-markdown';
+    import hljs from 'highlight.js';
+    import 'highlight.js/styles/googlecode.css';
 
     export default {
+        components: {VueMarkdown},
         data() {
             return {
                 editorPath: '/editor.md',
@@ -23,19 +26,12 @@
                 this.http.post('article', {'articleId': encodeURIComponent(this.$route.params.id)}).then(res => {
                     this.article = res.data.article;
 
-                    $script([
-                        `${this.editorPath}/examples/js/jquery.min.js`,
-                        `${this.editorPath}/lib/marked.min.js`,
-                        `${this.editorPath}/lib/prettify.min.js`,
-                        `${this.editorPath}/lib/raphael.min.js`,
-                        `${this.editorPath}/lib/underscore.min.js`,
-                    ], () => {
-                        console.log('finish load js');
-                    });
-
                 }).catch(res => {
                     this.error(res.respMsg);
                 });
+            },
+            rendered: function (content) {
+                // console.log(content);
             }
         },
         mounted() {
@@ -56,7 +52,6 @@
 
     .title {
         text-align: center;
-        font-family: Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
         font-size: 36px;
         line-height: 1.389;
         font-weight: 700;
