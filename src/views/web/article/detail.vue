@@ -3,6 +3,8 @@
         <div class="title">{{article.title}}</div>
 
         <div v-html="compiledMarkdown"></div>
+
+        <AppReward/>
     </AppPanel>
 </template>
 
