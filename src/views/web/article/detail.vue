@@ -1,11 +1,15 @@
 <template>
-    <AppPanel class="detail">
-        <div class="title">{{article.title}}</div>
+    <div>
+        <AppBreadcrumb :list="breadcrumbs"/>
 
-        <div v-html="compiledMarkdown"></div>
+        <AppPanel class="detail">
+            <div class="title">{{article.title}}</div>
 
-        <AppReward/>
-    </AppPanel>
+            <div v-html="compiledMarkdown"></div>
+
+            <AppReward/>
+        </AppPanel>
+    </div>
 </template>
 
 <script>
@@ -14,6 +18,12 @@
     export default {
         data() {
             return {
+                breadcrumbs: [{
+                    name: '文章',
+                    link: '/article'
+                }, {
+                    name: '前后分离的系统统一加解密'
+                }],
                 article: {}
             };
         },
@@ -48,7 +58,10 @@
 </script>
 
 <style scoped lang="less">
+    @import "../../../../my-theme/custom";
+
     .detail {
+        clear: both;
         padding: 20px;
     }
 
@@ -59,4 +72,5 @@
         font-weight: 700;
         color: #262626;
     }
+
 </style>

@@ -29,6 +29,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/web/article/detail.vue'], resolve)
         }, {
+            path: 'novel',
+            name: 'novel',
+            meta: {
+                title: '小时'
+            },
+            component: (resolve) => require(['./views/web/novel/index.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {

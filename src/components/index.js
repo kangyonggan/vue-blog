@@ -7,4 +7,7 @@ import './app-search';
 // 打赏
 import './app-reward';
 
+// 面包屑
+import './app-breadcrumb';
+
 
