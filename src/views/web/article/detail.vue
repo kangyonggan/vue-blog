@@ -2,22 +2,18 @@
     <AppPanel class="detail">
         <div class="title">{{article.title}}</div>
 
-        <div id="articleDetail">
-            <VueMarkdown :source="article.content" @rendered="rendered"></VueMarkdown>
-        </div>
+        <div v-html="compiledMarkdown"></div>
     </AppPanel>
 </template>
 
 <script>
-    import VueMarkdown from 'vue-markdown';
     import hljs from 'highlight.js';
     import 'highlight.js/styles/googlecode.css';
+    let marked = require('marked');
 
     export default {
-        components: {VueMarkdown},
         data() {
             return {
-                editorPath: '/editor.md',
                 article: {}
             };
         },
@@ -29,9 +25,24 @@
                 }).catch(res => {
                     this.error(res.respMsg);
                 });
-            },
-            rendered: function (content) {
-                // console.log(content);
+            }
+        },
+        computed: {
+            compiledMarkdown: function () {
+                let content = this.article.content;
+                if (!content) {
+                    return '';
+                }
+                return marked(content, {
+                    highlight: function (code, lang) {
+                        if (code) {
+                            console.log(code);
+                            return hljs.highlightBlock(code);
+                        } else {
+                            return '';
+                        }
+                    }
+                });
             }
         },
         mounted() {

@@ -10,7 +10,7 @@ export default {
             'createdTime': 1556090343602,
             'content': '\n' +
                 '## 依赖\n' +
-                '```\n' +
+                '```xml\n' +
                 '<parent>\n' +
                 '    <groupId>org.springframework.boot</groupId>\n' +
                 '    <artifactId>spring-boot-starter-parent</artifactId>\n' +
@@ -86,7 +86,7 @@ export default {
                 '\n' +
                 '## UUIDInterceptor.java\n' +
                 '\n' +
-                '```\n' +
+                '```java\n' +
                 'package com.kangyonggan.demo.configuration;\n' +
                 '\n' +
                 'import lombok.extern.log4j.Log4j2;\n' +
