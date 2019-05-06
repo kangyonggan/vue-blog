@@ -7,8 +7,6 @@
 </template>
 
 <script>
-    import hljs from 'highlight.js';
-    import 'highlight.js/styles/googlecode.css';
     let marked = require('marked');
 
     export default {
@@ -33,16 +31,7 @@
                 if (!content) {
                     return '';
                 }
-                return marked(content, {
-                    highlight: function (code, lang) {
-                        if (code) {
-                            console.log(code);
-                            return hljs.highlightBlock(code);
-                        } else {
-                            return '';
-                        }
-                    }
-                });
+                return marked(content);
             }
         },
         mounted() {
