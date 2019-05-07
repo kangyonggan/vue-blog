@@ -50,6 +50,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/web/novel/section.vue'], resolve)
         }, {
+            path: 'album',
+            name: 'album',
+            meta: {
+                title: '相册'
+            },
+            component: (resolve) => require(['./views/web/album/index.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {
