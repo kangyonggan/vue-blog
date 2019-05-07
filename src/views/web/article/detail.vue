@@ -29,7 +29,7 @@
         },
         methods: {
             init: function () {
-                this.http.post('article', {'articleId': encodeURIComponent(this.$route.params.id)}).then(res => {
+                this.http.post('/article', {'articleId': encodeURIComponent(this.$route.params.id)}).then(res => {
                     this.article = res.data.article;
 
                 }).catch(res => {

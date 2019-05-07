@@ -1,6 +1,6 @@
 <template>
     <div :class="' panel ' + (float ? (float==='right'?'pull-right':'pull-left'):'')" :style="'width: ' + (width ? width + 'px' : '100%')">
-        <div class="panel-title" v-if="title">{{title}}</div>
+        <div class="panel-title" v-if="title" :style="'text-align: ' + titleAlign">{{title}}</div>
         <slot></slot>
     </div>
 </template>
@@ -24,6 +24,14 @@
                 type: String,
                 validator (value) {
                     return oneOf(value, ['left', 'right']);
+                }
+            },
+            titleAlign: {
+                required: false,
+                type: String,
+                default: 'left',
+                validator (value) {
+                    return oneOf(value, ['left', 'center', 'right']);
                 }
             }
         }

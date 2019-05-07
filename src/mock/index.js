@@ -4,18 +4,19 @@ import navList from './navList';
 import articles from './articles';
 import article from './article';
 import novels from './novels';
+import novel from './novel';
 
 /**
  * 查询导航栏
  */
-Mock.mock('navList', 'get', () => {
+Mock.mock('/navList', 'get', () => {
     return navList;
 });
 
 /**
  * 查询文章列表
  */
-Mock.mock('article', 'get', () => {
+Mock.mock('/article', 'get', () => {
     return articles;
 });
 
@@ -29,8 +30,15 @@ Mock.mock(/article\/*/, 'post', () => {
 /**
  * 查询小说列表
  */
-Mock.mock('novel', 'get', () => {
+Mock.mock('/novel', 'get', () => {
     return novels;
+});
+
+/**
+ * 查询小说详情
+ */
+Mock.mock(/novel\/*/, 'post', () => {
+    return novel;
 });
 
 export default Mock;

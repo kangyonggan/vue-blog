@@ -35,7 +35,7 @@
             this.currentUrl = this.$route.path;
 
             // 设置导航栏
-            this.http.get('navList').then(res => {
+            this.http.get('/navList').then(res => {
                 this.navList = res.data.navList;
             }).catch(res => {
                 this.error(res.respMsg);

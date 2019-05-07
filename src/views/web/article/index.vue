@@ -68,7 +68,7 @@
              * @returns {string}
              */
             getEncryptLink: function (articleId) {
-                return 'article/' + Util.encryptUrl(articleId);
+                return '/article/' + Util.encryptUrl(articleId);
             },
             formatIndex: function (index) {
                 index++;
@@ -77,7 +77,7 @@
         },
         mounted() {
             // 加载文章列表
-            this.http.get('article').then(res => {
+            this.http.get('/article').then(res => {
                 this.pageInfo = res.data.pageInfo;
             }).catch(res => {
                 this.error(res.respMsg);

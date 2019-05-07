@@ -36,6 +36,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/web/novel/index.vue'], resolve)
         }, {
+            path: 'novel/:id',
+            name: 'novelDetail',
+            meta: {
+                title: '小说详情'
+            },
+            component: (resolve) => require(['./views/web/novel/detail.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {

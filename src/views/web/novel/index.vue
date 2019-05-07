@@ -70,7 +70,7 @@
              * @returns {string}
              */
             getEncryptLink: function (novelId, sectionId) {
-                let url = 'novel/' + Util.encryptUrl(novelId);
+                let url = '/novel/' + Util.encryptUrl(novelId);
                 if (sectionId) {
                     url += '/' + Util.encryptUrl(sectionId);
                 }
@@ -79,7 +79,7 @@
         },
         mounted() {
             // 加载小说列表
-            this.http.get('novel').then(res => {
+            this.http.get('/novel').then(res => {
                 this.novels = res.data.novels;
                 this.AllNovels = res.data.AllNovels;
             }).catch(res => {
@@ -109,8 +109,12 @@
                     float: left;
                     width: 100px;
                     height: 125px;
-                    border: none;
-                    background: url("/src/assets/images/nocover.jpg") no-repeat;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: rgb(221, 221, 221);
+                    border-image: initial;
+                    padding: 1px;
+                    background: rgb(255, 255, 255);
                 }
 
                 .info {
