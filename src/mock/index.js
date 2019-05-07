@@ -10,6 +10,8 @@ import albums from './albums';
 import album from './album';
 import videos from './videos';
 import video from './video';
+import indexArticles from './indexArticles';
+import indexNovels from './indexNovels';
 
 /**
  * 查询导航栏
@@ -79,6 +81,20 @@ Mock.mock('/video', 'get', () => {
  */
 Mock.mock(/video\/*/, 'post', () => {
     return video;
+});
+
+/**
+ * 查询首页文章列表
+ */
+Mock.mock('/indexArticles', 'get', () => {
+    return indexArticles;
+});
+
+/**
+ * 查询首页小说列表
+ */
+Mock.mock('/indexNovels', 'get', () => {
+    return indexNovels;
 });
 
 export default Mock;

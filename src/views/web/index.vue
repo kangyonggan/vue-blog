@@ -2,16 +2,298 @@
     <div>
         <AppSearch/>
 
-        <AppPanel>
-            首页
-        </AppPanel>
+        <div class="block">
+            <h1 class="title">文 章</h1>
+            <div class="summary">
+                当你去教别人时，你的大脑会更有逻辑。不要吝啬于分享，在这种情况下，教别人是你最好的学习方法
+            </div>
+            <div class="articles">
+                <router-link :to="getArticleLink(article.articleId)" class="article" v-for="article in articles"
+                             :key="article.articleId">
+                    <div class="article-title">
+                        {{article.title}}
+                    </div>
+                    <div class="split"></div>
+                    <div class="article-summary">
+                        {{article.summary}}
+                    </div>
+                </router-link>
+                <AppClear/>
+            </div>
+        </div>
+        <div class="block">
+            <h1 class="title">小 说</h1>
+            <div class="summary">
+                寡人唯一的阅读爱好就是看小说了，本站小说源自各大网站，仅供学习交流使用
+            </div>
+            <div class="novels">
+                <div v-for="novel in novels" :key="novel.novelId" class="novel">
+                    <router-link :to="getNovelLink(novel.novelId)">
+                        <img v-if="novel.cover" :src="baseUrl + '/' + novel.cover"/>
+                        <img v-if="!novel.cover" src="/src/assets/images/nocover.jpg"/>
+                    </router-link>
+                    <div class="info">
+                        <div class="top">
+                            <div class="name">{{novel.name}}</div>
+                            <div class="author">{{novel.author}}</div>
+                        </div>
+                        <div class="summary">
+                            {{novel.summary}}
+                        </div>
+                    </div>
+                </div>
+                <AppClear/>
+            </div>
+        </div>
+        <div class="block">
+            <h1 class="title">相 册</h1>
+            <div class="summary">
+                把生活中拍下来的照片，经过精心挑选出一些相对其他照片更有纪念意义的，更有纪念价值的照片，制作成精美的相册
+            </div>
+            <div class="photos">
+                <ul>
+                    <li>
+                        <img src="/src/assets/images/album.jpg"/>
+                    </li>
+                    <li>
+                        <img src="/src/assets/images/video.jpeg"/>
+                    </li>
+                    <li>
+                        <img src="/src/assets/images/album.jpg"/>
+                    </li>
+                    <li>
+                        <img src="/src/assets/images/photo.png"/>
+                    </li>
+                    <li>
+                        <img src="/src/assets/images/video.jpeg"/>
+                    </li>
+                    <li>
+                        <img src="/src/assets/images/album.jpg"/>
+                    </li>
+                    <li>
+                        <img src="/src/assets/images/photo.png"/>
+                    </li>
+                    <li>
+                        <img src="/src/assets/images/video.jpeg"/>
+                    </li>
+                </ul>
+                <AppClear/>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-    export default {};
+    import Util from '@/libs/util';
+    import Config from '@/config/config';
+
+    export default {
+        data() {
+            return {
+                baseUrl: Config.baseUrl,
+                articles: [],
+                novels: []
+            };
+        },
+        methods: {
+            /**
+             * 获取文章加密连接
+             *
+             * @param articleId
+             * @returns {string}
+             */
+            getArticleLink: function (articleId) {
+                return '/article/' + Util.encryptUrl(articleId);
+            },
+            /**
+             * 获取小说加密连接
+             *
+             * @param novelId
+             * @returns {string}
+             */
+            getNovelLink: function (novelId) {
+                return '/novel/' + Util.encryptUrl(novelId);
+            }
+        },
+        mounted() {
+            // 加载文章列表
+            this.http.get('/indexArticles').then(res => {
+                this.articles = res.data.articles;
+            }).catch(res => {
+                this.error(res.respMsg);
+            });
+            // 加载小说列表
+            this.http.get('/indexNovels').then(res => {
+                this.novels = res.data.novels;
+            }).catch(res => {
+                this.error(res.respMsg);
+            });
+        }
+    };
 </script>
 
-<style scoped>
+<style scoped lang="less">
+    @import "../../../my-theme/custom";
 
+    .block {
+        margin-bottom: 30px;
+        width: 100%;
+        padding: 10px;
+        clear: both;
+        background: #fff;
+
+        .title {
+            color: #000;
+            text-align: center;
+            line-height: 50px;
+            width: 100px;
+            margin: 0 auto;
+            border-bottom: 4px solid @primary-color;
+        }
+
+        .summary {
+            text-align: center;
+            margin-top: 15px;
+            color: #595959;
+        }
+    }
+
+    .articles {
+        padding-bottom: 30px;
+
+        a:hover {
+            border-top: 4px solid @primary-color;
+            box-shadow: 0 30px 30px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .article {
+            height: 230px;
+            width: 390px;
+            float: left;
+            border: 1px solid #e9e9e9;
+            border-top: 4px solid #e9e9e9;
+            background: #f9f9f9;
+            margin-left: 8px;
+            margin-right: 8px;
+            margin-top: 30px;
+            overflow: hidden;
+
+            &-title {
+                font-weight: 700;
+                color: #333;
+                font-size: 18px;
+                text-align: center;
+                height: 40px;
+                line-height: 40px;
+                margin-top: 15px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
+
+            .split {
+                width: 100px;
+                height: 2px;
+                margin: 0 auto;
+                background: #e9e9e9;
+                margin-top: 15px;
+            }
+
+            &-summary {
+                margin-top: 5px;
+                padding: 15px;
+                line-height: 2;
+            }
+        }
+    }
+
+    .novels {
+        padding-bottom: 30px;
+
+        .novel:hover {
+            border-top: 4px solid @primary-color;
+            box-shadow: 0 30px 30px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .novel {
+            height: 170px;
+            width: 390px;
+            padding: 8px;
+            float: left;
+            border: 1px solid #e9e9e9;
+            border-top: 4px solid #e9e9e9;
+            background: #f9f9f9;
+            margin-left: 8px;
+            margin-right: 8px;
+            margin-top: 30px;
+            overflow: hidden;
+
+            img {
+                float: left;
+                width: 120px;
+                height: 150px;
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgb(221, 221, 221);
+                border-image: initial;
+                padding: 1px;
+                background: rgb(255, 255, 255);
+            }
+
+            .info {
+                float: left;
+                width: 230px;
+                margin-left: 10px;
+
+                .top {
+                    height: 40px;
+                    line-height: 40px;
+                    font-size: 14px;
+                    border-bottom: 1px solid @primary-color;
+
+                    .name {
+                        float: left;
+                        font-weight: 700;
+                        font-size: 16px;
+                        color: #333;
+                    }
+
+                    .author {
+                        float: right;
+                    }
+                }
+
+                .summary {
+                    margin-top: 5px;
+                    font-size: 13px;
+                    clear: both;
+                    height: 95px;
+                    overflow: hidden;
+                }
+            }
+
+        }
+    }
+
+    .photos {
+        margin-top: 30px;
+        height: 220px;
+        overflow: hidden;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                float: left;
+
+                img {
+                    height: 220px;
+                    outline: none;
+                    border: none;
+                }
+            }
+        }
+    }
 </style>
