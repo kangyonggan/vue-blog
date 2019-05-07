@@ -2,7 +2,7 @@
     <div>
         <div class="search">
             <ul class="tabs">
-                <li v-for="(tab, index) in tabs" :key="index" @click="activeTab" :class="{'active':index===0}">
+                <li v-for="(tab, index) in tabs" :key="index" @click="clickTab" :class="{'active':index===currIndex}">
                     {{tab.text}}
                 </li>
             </ul>
@@ -45,7 +45,13 @@
     import Vue from 'vue';
 
     const AppSearch = {
-        props: {},
+        props: {
+            activeTab: {
+                required: false,
+                type: Number,
+                default: 0
+            }
+        },
         data() {
             return {
                 tabs: [{
@@ -56,16 +62,27 @@
                     url: 'searchNovel'
                 }],
                 imgLeft: 25,
+                currIndex: 0,
                 placeholder: '请输入需要查找的文章标题，支持模糊搜索'
             };
         },
+        mounted: function () {
+            this.imgLeft = 25 + this.activeTab * 80;
+            this.currIndex = this.activeTab;
+
+            if (this.currIndex === 0) {
+                this.placeholder = '请输入需要查找的文章标题，支持模糊搜索';
+            } else if (this.currIndex === 1) {
+                this.placeholder = '请输入需要查找的小说名称或作者，支持模糊搜索';
+            }
+        },
         methods: {
             /**
-             * 激活Tab页
+             * 点击Tab页
              *
              * @param e
              */
-            activeTab: function (e) {
+            clickTab: function (e) {
                 let parent = e.target.parentNode;
 
                 let currIndex = 0;

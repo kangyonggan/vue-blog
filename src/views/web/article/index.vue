@@ -55,17 +55,6 @@
     export default {
         data() {
             return {
-                tabs: [{
-                    text: '后台'
-                }, {
-                    text: '前端'
-                }, {
-                    text: '数据库'
-                }, {
-                    text: '安装配置'
-                }, {
-                    text: '综合'
-                }],
                 pageInfo: {
                     list: []
                 }

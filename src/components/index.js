@@ -10,4 +10,7 @@ import './app-reward';
 // 面包屑
 import './app-breadcrumb';
 
+// 清除浮动
+import './app-clear';
+
 

@@ -3,6 +3,7 @@ import Mock from 'mockjs';
 import navList from './navList';
 import articles from './articles';
 import article from './article';
+import novels from './novels';
 
 /**
  * 查询导航栏
@@ -23,6 +24,13 @@ Mock.mock('article', 'get', () => {
  */
 Mock.mock(/article\/*/, 'post', () => {
     return article;
+});
+
+/**
+ * 查询小说列表
+ */
+Mock.mock('novel', 'get', () => {
+    return novels;
 });
 
 export default Mock;
