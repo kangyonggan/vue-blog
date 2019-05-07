@@ -7,6 +7,7 @@ import novels from './novels';
 import novel from './novel';
 import section from './section';
 import albums from './albums';
+import album from './album';
 
 /**
  * 查询导航栏
@@ -55,6 +56,13 @@ Mock.mock(/section\/*\/*/, 'post', () => {
  */
 Mock.mock('/album', 'get', () => {
     return albums;
+});
+
+/**
+ * 查询相册详情
+ */
+Mock.mock(/album\/*/, 'post', () => {
+    return album;
 });
 
 export default Mock;

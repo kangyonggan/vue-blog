@@ -57,6 +57,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/web/album/index.vue'], resolve)
         }, {
+            path: 'album/:albumId',
+            name: 'albumDetail',
+            meta: {
+                title: '相册详情'
+            },
+            component: (resolve) => require(['./views/web/album/detail.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {
