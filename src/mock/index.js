@@ -5,6 +5,7 @@ import articles from './articles';
 import article from './article';
 import novels from './novels';
 import novel from './novel';
+import section from './section';
 
 /**
  * 查询导航栏
@@ -39,6 +40,13 @@ Mock.mock('/novel', 'get', () => {
  */
 Mock.mock(/novel\/*/, 'post', () => {
     return novel;
+});
+
+/**
+ * 查询小说章节
+ */
+Mock.mock(/section\/*\/*/, 'post', () => {
+    return section;
 });
 
 export default Mock;

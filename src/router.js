@@ -22,7 +22,7 @@ const routers = [{
             },
             component: (resolve) => require(['./views/web/article/index.vue'], resolve)
         }, {
-            path: 'article/:id',
+            path: 'article/:articleId',
             name: 'articleDetail',
             meta: {
                 title: '文章详情'
@@ -32,16 +32,23 @@ const routers = [{
             path: 'novel',
             name: 'novel',
             meta: {
-                title: '小时'
+                title: '小说'
             },
             component: (resolve) => require(['./views/web/novel/index.vue'], resolve)
         }, {
-            path: 'novel/:id',
+            path: 'novel/:novelId',
             name: 'novelDetail',
             meta: {
                 title: '小说详情'
             },
             component: (resolve) => require(['./views/web/novel/detail.vue'], resolve)
+        }, {
+            path: 'novel/:novelId/:sectionId',
+            name: 'novelSection',
+            meta: {
+                title: '小说章节'
+            },
+            component: (resolve) => require(['./views/web/novel/section.vue'], resolve)
         }, {
             path: '*',
             name: '404',

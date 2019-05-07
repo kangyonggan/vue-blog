@@ -13,6 +13,7 @@
 </template>
 
 <script>
+    import Util from '@/libs/util';
     let marked = require('marked');
 
     export default {
@@ -29,9 +30,9 @@
         },
         methods: {
             init: function () {
-                this.http.post('/article', {'articleId': encodeURIComponent(this.$route.params.id)}).then(res => {
+                this.http.post('/article', {'articleId': encodeURIComponent(this.$route.params.articleId)}).then(res => {
                     this.article = res.data.article;
-
+                    Util.title(this.article.title);
                 }).catch(res => {
                     this.error(res.respMsg);
                 });

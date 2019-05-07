@@ -18,7 +18,7 @@
                     </div>
                     <div class="item">
                         最新章节：
-                        <router-link to="/">{{novel.lastSectionTitle}}</router-link>
+                        <router-link :to="getEncryptLink(novel.novelId, novel.lastSectionId)">{{novel.lastSectionTitle}}</router-link>
                     </div>
                     <div class="item">
                         来　　源：<a href="http://biquge.cn" target="_blank">http://biquge.cn</a>
@@ -46,7 +46,7 @@
                 </li>
             </ul>
 
-            <AppClear height="20"/>
+            <AppClear :height="20"/>
         </AppPanel>
 
         <AppPanel class="sections" :title="'《' + novel.name + '》全部章节列表'" title-align="center">
@@ -58,7 +58,7 @@
 
             <AppClear/>
             <AppReward/>
-            <AppClear height="20"/>
+            <AppClear :height="20"/>
         </AppPanel>
     </div>
 </template>
@@ -101,12 +101,13 @@
                 return url;
             },
             init: function () {
-                this.http.post('/novel', {'novelId': encodeURIComponent(this.$route.params.id)}).then(res => {
+                this.http.post('/novel', {'novelId': encodeURIComponent(this.$route.params.novelId)}).then(res => {
                     this.novel = res.data.novel;
                     this.novelQueue = res.data.novelQueue;
                     this.lastSections = res.data.lastSections;
                     this.sections = res.data.sections;
                     this.breadcrumbs[1].name = this.novel.name;
+                    Util.title(this.novel.name);
                 }).catch(res => {
                     this.error(res.respMsg);
                 });
