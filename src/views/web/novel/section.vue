@@ -2,14 +2,26 @@
     <div>
         <AppBreadcrumb :list="breadcrumbs"/>
 
+        <Tools :novel="novel" :prev-section="prevSection" :next-section="nextSection"/>
+
+        <AppPanel class="section">
+            <div class="title">{{section.title}}</div>
+            <div v-html="section.content" class="section-content"></div>
+        </AppPanel>
+
+        <Tools :novel="novel" :prev-section="prevSection" :next-section="nextSection"/>
+
+        <AppReward/>
     </div>
 </template>
 
 <script>
     import Util from '@/libs/util';
     import Config from '@/config/config';
+    import Tools from './tools';
 
     export default {
+        components: {Tools},
         data() {
             return {
                 baseUrl: Config.baseUrl,
@@ -58,6 +70,7 @@
                     this.breadcrumbs[1].name = this.novel.name;
                     this.breadcrumbs[1].link = '/novel/' + Util.encryptUrl(this.novel.novelId);
                     this.breadcrumbs[2].name = this.section.title;
+                    Util.title(this.section.title);
                 }).catch(res => {
                     this.error(res.respMsg);
                 });
@@ -75,6 +88,21 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../../../my-theme/custom";
+    .section {
+        margin: 20px 0;
+        padding: 10px;
 
+        .title {
+            text-align: center;
+            font-size: 22px;
+            color: #000;
+        }
+
+        &-content {
+            line-height: 1.7;
+            font-size: 17px !important;
+            color: #333;
+            margin-top: 10px;
+        }
+    }
 </style>
