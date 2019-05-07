@@ -8,6 +8,8 @@ import novel from './novel';
 import section from './section';
 import albums from './albums';
 import album from './album';
+import videos from './videos';
+import video from './video';
 
 /**
  * 查询导航栏
@@ -63,6 +65,20 @@ Mock.mock('/album', 'get', () => {
  */
 Mock.mock(/album\/*/, 'post', () => {
     return album;
+});
+
+/**
+ * 查询视频列表
+ */
+Mock.mock('/video', 'get', () => {
+    return videos;
+});
+
+/**
+ * 查询视频详情
+ */
+Mock.mock(/video\/*/, 'post', () => {
+    return video;
 });
 
 export default Mock;

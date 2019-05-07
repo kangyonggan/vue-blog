@@ -64,6 +64,20 @@ const routers = [{
             },
             component: (resolve) => require(['./views/web/album/detail.vue'], resolve)
         }, {
+            path: 'video',
+            name: 'video',
+            meta: {
+                title: '视频'
+            },
+            component: (resolve) => require(['./views/web/video/index.vue'], resolve)
+        }, {
+            path: 'video/:videoId',
+            name: 'videoDetail',
+            meta: {
+                title: '视频详情'
+            },
+            component: (resolve) => require(['./views/web/video/detail.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {
