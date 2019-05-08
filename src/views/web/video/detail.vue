@@ -29,7 +29,7 @@
         },
         methods: {
             init: function () {
-                this.http.post('/video', {'videoId': encodeURIComponent(this.$route.params.videoId)}).then(res => {
+                this.http.post('/video/detail', {'videoId': encodeURIComponent(this.$route.params.videoId)}).then(res => {
                     this.video = res.data.video;
 
                     this.breadcrumbs[1].name = this.video.title;

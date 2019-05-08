@@ -101,7 +101,7 @@
                 return url;
             },
             init: function () {
-                this.http.post('/novel', {'novelId': encodeURIComponent(this.$route.params.novelId)}).then(res => {
+                this.http.post('/novel/detail', {'novelId': encodeURIComponent(this.$route.params.novelId)}).then(res => {
                     this.novel = res.data.novel;
                     this.novelQueue = res.data.novelQueue;
                     this.lastSections = res.data.lastSections;

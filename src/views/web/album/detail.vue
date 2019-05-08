@@ -42,7 +42,7 @@
         },
         methods: {
             init: function () {
-                this.http.post('/album', {'albumId': encodeURIComponent(this.$route.params.albumId)}).then(res => {
+                this.http.post('/album/detail', {'albumId': encodeURIComponent(this.$route.params.albumId)}).then(res => {
                     this.album = res.data.album;
                     this.albumPhotos = res.data.albumPhotos;
                     this.breadcrumbs[1].name = this.album.albumName;

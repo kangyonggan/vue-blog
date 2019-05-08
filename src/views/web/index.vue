@@ -67,7 +67,7 @@
             return {
                 baseUrl: Config.baseUrl,
                 articles: [],
-                index: 0,
+                index: 1,
                 interval: null,
                 novels: [],
                 photos: [{
@@ -138,13 +138,13 @@
         },
         mounted() {
             // 加载文章列表
-            this.http.get('/indexArticles').then(res => {
+            this.http.get('/articles').then(res => {
                 this.articles = res.data.articles;
             }).catch(res => {
                 this.error(res.respMsg);
             });
             // 加载小说列表
-            this.http.get('/indexNovels').then(res => {
+            this.http.get('/novels').then(res => {
                 this.novels = res.data.novels;
             }).catch(res => {
                 this.error(res.respMsg);
@@ -152,6 +152,9 @@
 
             this.showImg(this.index);
             this.startInterval();
+        },
+        destroyed() {
+            this.clearInterval();
         }
     };
 </script>

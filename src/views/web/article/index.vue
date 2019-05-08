@@ -8,17 +8,20 @@
                     :class="{'no-border': index === pageInfo.pageSize - 1}">
                     <div class="left">
                         <router-link class="title" :to="getEncryptLink(article.articleId)">
-                            <span class="big">阿</span>
-                            <span>里员工都在用的知识管理工具，究竟有何特别？</span>
+                            <span class="big">{{article.title.substring(0, 1)}}</span>
+                            <span>{{article.title.substring(1)}}</span>
                         </router-link>
-                        <div class="summary">4月25日，蚂蚁金服集团的官方技术帐号“蚂蚁金服科技”，专文介绍了语雀。
-                            “中国日报中文网”等网络媒体也进行了转载，引起了很大的反响。
-                        </div>
+                        <div class="summary">{{article.summary}}</div>
                         <div class="info">
-                            <span>Linux</span>
-                            <span>Java</span>
+                            <span>
+                                <Icon type="ios-flame" size="18"/>
+                                <em>{{article.viewNum}}</em>
+                            </span>
 
-                            <em>2019-04-30 16:08</em>
+                            <em>
+                                <Icon type="ios-clock-outline" size="18"/>
+                                <span>{{dateFormat(article.createdTime, 'yyyy-MM-dd HH:mm')}}</span>
+                            </em>
                         </div>
                     </div>
                     <router-link class="right" :to="getEncryptLink(article.articleId)">
@@ -26,25 +29,36 @@
                     </router-link>
                 </li>
             </ul>
+            <div v-if="!pageInfo.size" class="empty-result">
+                没有相关文章
+            </div>
         </AppPanel>
 
-        <AppPanel :width="380" float="right" title="站长推荐">
+        <AppPanel :width="380" float="right" title="大家都在看">
             <ul class="hot-content">
-                <li v-for="(article, index) in pageInfo.list" :key="index"
-                    :class="{'no-border': index === pageInfo.pageSize - 1}">
+                <li v-for="(article, index) in articles" :key="index"
+                    :class="{'no-border': index === articles.length - 1}">
                     <span class="index">{{formatIndex(index)}}</span>
                     <div class="right">
                         <router-link :to="getEncryptLink(article.articleId)">阿里员工都在用的知识管理工具，究竟有何特别？</router-link>
 
                         <div class="info">
-                            <span>Linux</span>
-                            <span>Java</span>
+                            <span>
+                                <Icon type="ios-flame"/>
+                                {{article.viewNum}}
+                            </span>
 
-                            <em>2019-04-30</em>
+                            <em>
+                                <Icon type="ios-clock-outline"/>
+                                {{dateFormat(article.createdTime, 'yyyy-MM-dd')}}
+                            </em>
                         </div>
                     </div>
                 </li>
             </ul>
+            <div v-if="!articles.length" class="empty-result">
+                没有相关文章
+            </div>
         </AppPanel>
     </div>
 </template>
@@ -57,7 +71,8 @@
             return {
                 pageInfo: {
                     list: []
-                }
+                },
+                articles: []
             };
         },
         methods: {
@@ -77,8 +92,9 @@
         },
         mounted() {
             // 加载文章列表
-            this.http.get('/article').then(res => {
+            this.http.post('/article').then(res => {
                 this.pageInfo = res.data.pageInfo;
+                this.articles = res.data.articles;
             }).catch(res => {
                 this.error(res.respMsg);
             });
@@ -88,6 +104,13 @@
 
 <style scoped lang="less">
     @import "../../../../my-theme/custom";
+
+    .empty-result {
+        text-align: center;
+        color: #999;
+        font-size: 15px;
+        line-height: 120px;
+    }
 
     ul.tab-content {
         list-style: none;
@@ -136,12 +159,25 @@
                     color: #8c8c8c;
 
                     span {
-                        cursor: pointer;
+                        float: right;
                         margin-right: 15px;
+
+                        em {
+                            display: inline-block;
+                            line-height: 20px;
+                            margin-left: 5px;
+                            float: right;
+                        }
                     }
 
                     em {
-                        float: right;
+                        float: left;
+
+                        span {
+                            display: inline-block;
+                            line-height: 20px;
+                            margin-left: 5px;
+                        }
                     }
                 }
             }
@@ -204,7 +240,6 @@
                     color: #8c8c8c;
 
                     span {
-                        cursor: pointer;
                         margin-right: 15px;
                     }
 

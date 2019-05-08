@@ -16,42 +16,42 @@ import indexNovels from './indexNovels';
 /**
  * 查询导航栏
  */
-Mock.mock('/navList', 'get', () => {
+Mock.mock('/navs', 'get', () => {
     return navList;
 });
 
 /**
  * 查询文章列表
  */
-Mock.mock('/article', 'get', () => {
+Mock.mock('/article', 'post', () => {
     return articles;
 });
 
 /**
  * 查询文章详情
  */
-Mock.mock(/article\/*/, 'post', () => {
+Mock.mock('/article/detail', 'post', () => {
     return article;
 });
 
 /**
  * 查询小说列表
  */
-Mock.mock('/novel', 'get', () => {
+Mock.mock('/novel', 'post', () => {
     return novels;
 });
 
 /**
  * 查询小说详情
  */
-Mock.mock(/novel\/*/, 'post', () => {
+Mock.mock('/novel/detail', 'post', () => {
     return novel;
 });
 
 /**
  * 查询小说章节
  */
-Mock.mock(/section\/*\/*/, 'post', () => {
+Mock.mock('/section', 'post', () => {
     return section;
 });
 
@@ -65,7 +65,7 @@ Mock.mock('/album', 'get', () => {
 /**
  * 查询相册详情
  */
-Mock.mock(/album\/*/, 'post', () => {
+Mock.mock('/album/detail', 'post', () => {
     return album;
 });
 
@@ -79,21 +79,21 @@ Mock.mock('/video', 'get', () => {
 /**
  * 查询视频详情
  */
-Mock.mock(/video\/*/, 'post', () => {
+Mock.mock('/video/detail', 'post', () => {
     return video;
 });
 
 /**
  * 查询首页文章列表
  */
-Mock.mock('/indexArticles', 'get', () => {
+Mock.mock('/articles', 'get', () => {
     return indexArticles;
 });
 
 /**
  * 查询首页小说列表
  */
-Mock.mock('/indexNovels', 'get', () => {
+Mock.mock('/novels', 'get', () => {
     return indexNovels;
 });
 

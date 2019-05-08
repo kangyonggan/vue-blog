@@ -18,24 +18,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="hots">
-                <span>热　　搜：</span>
-                <ul>
-                    <li>
-                        <a href="javascript:">Java</a>
-                    </li>
-                    <li>
-                        <a href="javascript:">Linux</a>
-                    </li>
-                    <li>
-                        <a href="javascript:">Spring Boot</a>
-                    </li>
-                    <li>
-                        <a href="javascript:">逆天邪神</a>
-                    </li>
-                </ul>
-            </div>
         </div>
         <div style="clear: both;height: 30px;"></div>
     </div>
@@ -188,36 +170,6 @@
                 a {
                     color: @primary-color;
                     margin-left: 13px;
-                }
-            }
-        }
-    }
-
-    .hots {
-        margin-top: 5px;
-        margin-left: 5px;
-        font-size: 13px;
-
-        span {
-            float: left;
-        }
-
-        ul {
-            float: left;
-            list-style: none;
-            margin: 0;
-            height: 0;
-
-            li {
-                float: left;
-                margin-left: 20px;
-
-                a {
-                    color: @primary-color;
-                }
-
-                a:hover {
-                    text-decoration: underline;
                 }
             }
         }

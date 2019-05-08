@@ -79,7 +79,7 @@
         },
         mounted() {
             // 加载小说列表
-            this.http.get('/novel').then(res => {
+            this.http.post('/novel').then(res => {
                 this.novels = res.data.novels;
                 this.AllNovels = res.data.AllNovels;
             }).catch(res => {

@@ -23,16 +23,17 @@
                     name: '文章',
                     link: '/article'
                 }, {
-                    name: '前后分离的系统统一加解密'
+                    name: '加载中'
                 }],
                 article: {}
             };
         },
         methods: {
             init: function () {
-                this.http.post('/article', {'articleId': encodeURIComponent(this.$route.params.articleId)}).then(res => {
+                this.http.post('/article/detail', {'articleId': Util.decrypt(this.$route.params.articleId)}).then(res => {
                     this.article = res.data.article;
                     Util.title(this.article.title);
+                    this.breadcrumbs[1].name = this.article.title;
                 }).catch(res => {
                     this.error(res.respMsg);
                 });
