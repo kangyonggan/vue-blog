@@ -21,6 +21,10 @@
                 <AppClear/>
             </div>
         </div>
+        <div class="photos" id="photos">
+            <img v-for="(photo, index) in photos" :key="index" :src="photo.thumb" @click="showImg(index)"
+                 @mouseenter="clearInterval()" @mouseleave="startInterval()"/>
+        </div>
         <div class="block">
             <h1 class="title">小 说</h1>
             <div class="summary">
@@ -45,41 +49,6 @@
                 <AppClear/>
             </div>
         </div>
-        <div class="block">
-            <h1 class="title">相 册</h1>
-            <div class="summary">
-                把生活中拍下来的照片，经过精心挑选出一些相对其他照片更有纪念意义的，更有纪念价值的照片，制作成精美的相册
-            </div>
-            <div class="photos">
-                <ul>
-                    <li>
-                        <img src="/src/assets/images/album.jpg"/>
-                    </li>
-                    <li>
-                        <img src="/src/assets/images/video.jpeg"/>
-                    </li>
-                    <li>
-                        <img src="/src/assets/images/album.jpg"/>
-                    </li>
-                    <li>
-                        <img src="/src/assets/images/photo.png"/>
-                    </li>
-                    <li>
-                        <img src="/src/assets/images/video.jpeg"/>
-                    </li>
-                    <li>
-                        <img src="/src/assets/images/album.jpg"/>
-                    </li>
-                    <li>
-                        <img src="/src/assets/images/photo.png"/>
-                    </li>
-                    <li>
-                        <img src="/src/assets/images/video.jpeg"/>
-                    </li>
-                </ul>
-                <AppClear/>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -92,7 +61,26 @@
             return {
                 baseUrl: Config.baseUrl,
                 articles: [],
-                novels: []
+                offset: 0,
+                interval: null,
+                novels: [],
+                photos: [{
+                    thumb: '/src/assets/images/photos/100_1.jpeg'
+                }, {
+                    thumb: '/src/assets/images/photos/100_21.jpeg'
+                }, {
+                    thumb: '/src/assets/images/photos/100_10.jpeg'
+                }, {
+                    thumb: '/src/assets/images/photos/100_20.jpeg'
+                }, {
+                    thumb: '/src/assets/images/photos/100_6.jpeg'
+                }, {
+                    thumb: '/src/assets/images/photos/100_15.jpeg'
+                }, {
+                    thumb: '/src/assets/images/photos/100_2.jpeg'
+                }, {
+                    thumb: '/src/assets/images/photos/100_13.jpeg'
+                }]
             };
         },
         methods: {
@@ -113,6 +101,32 @@
              */
             getNovelLink: function (novelId) {
                 return '/novel/' + Util.encryptUrl(novelId);
+            },
+            showImg: function (index) {
+                // 获取图片数组
+                let photos = document.getElementById('photos');
+                let images = photos.getElementsByTagName('img');
+                this.offset = (images.length - index) % images.length;
+                // 计算每张图片按Y轴旋转的角度
+                let deg = Math.floor(360 / images.length);
+                for (let i = 0; i < images.length; i++) {
+                    images[i].style = 'transform: rotateX(-15deg) rotateY(' + deg * (i + this.offset) + 'deg) translateZ(380px)';
+                }
+            },
+            clearInterval: function () {
+                clearInterval(this.interval);
+            },
+            startInterval: function () {
+                this.clearInterval();
+                let that = this;
+                this.interval = setInterval(function () {
+                    that.offset += 1;
+                    if (that.offset >= that.photos.length) {
+                        that.offset = 0;
+                    }
+
+                    that.showImg(that.offset);
+                }, 2500);
             }
         },
         mounted() {
@@ -128,6 +142,9 @@
             }).catch(res => {
                 this.error(res.respMsg);
             });
+
+            this.showImg(this.offset);
+            this.startInterval();
         }
     };
 </script>
@@ -275,25 +292,23 @@
         }
     }
 
+
     .photos {
-        margin-top: 30px;
-        height: 220px;
-        overflow: hidden;
+        margin: 60px auto 260px auto;
+        height: 204px;
+        width: 300px;
+        position: relative;
+        transform-style: preserve-3d;
+        perspective: 800px;
 
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-
-            li {
-                float: left;
-
-                img {
-                    height: 220px;
-                    outline: none;
-                    border: none;
-                }
-            }
+        img {
+            height: 180px;
+            position: absolute;
+            cursor: pointer;
+            box-shadow: 1px -1px 6px #666;
+            border-radius: 4px;
         }
+
     }
+
 </style>
