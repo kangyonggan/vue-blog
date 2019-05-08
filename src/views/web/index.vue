@@ -18,6 +18,9 @@
                         {{article.summary}}
                     </div>
                 </router-link>
+                <div v-if="!articles.length" class="empty-result">
+                    没有相关文章
+                </div>
                 <AppClear/>
             </div>
         </div>
@@ -45,6 +48,9 @@
                             {{novel.summary}}
                         </div>
                     </div>
+                </div>
+                <div v-if="!novels.length" class="empty-result">
+                    没有相关小说
                 </div>
                 <AppClear/>
             </div>
@@ -158,6 +164,13 @@
         padding: 10px;
         clear: both;
         background: #fff;
+
+        .empty-result {
+            text-align: center;
+            color: #999;
+            font-size: 15px;
+            line-height: 120px;
+        }
 
         .title {
             color: #000;
