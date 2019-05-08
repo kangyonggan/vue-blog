@@ -2,6 +2,7 @@ import Mock from 'mockjs';
 
 import navList from './navList';
 import articles from './articles';
+import viewArticles from './viewArticles';
 import article from './article';
 import novels from './novels';
 import novel from './novel';
@@ -25,6 +26,13 @@ Mock.mock('/navs', 'get', () => {
  */
 Mock.mock('/article', 'post', () => {
     return articles;
+});
+
+/**
+ * 大家都在看
+ */
+Mock.mock('/article/view', 'get', () => {
+    return viewArticles;
 });
 
 /**
