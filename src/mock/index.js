@@ -5,6 +5,7 @@ import articles from './articles';
 import viewArticles from './viewArticles';
 import article from './article';
 import novels from './novels';
+import newNovels from './newNovels';
 import novel from './novel';
 import section from './section';
 import albums from './albums';
@@ -47,6 +48,13 @@ Mock.mock('/article/detail', 'post', () => {
  */
 Mock.mock('/novel', 'post', () => {
     return novels;
+});
+
+/**
+ * 查询最新小说
+ */
+Mock.mock('/novel/new', 'get', () => {
+    return newNovels;
 });
 
 /**

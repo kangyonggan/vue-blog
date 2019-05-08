@@ -2,7 +2,7 @@
     <div>
         <AppSearch :activeTab="1"/>
 
-        <AppPanel class="novels">
+        <AppPanel class="novels" v-if="novels.length">
             <ul>
                 <li v-for="novel in novels" :key="novel.novelId">
                     <router-link :to="getEncryptLink(novel.novelId)">
@@ -23,7 +23,7 @@
             <AppClear/>
         </AppPanel>
 
-        <AppPanel class="allNovels" title="最近更新的小说列表">
+        <AppPanel class="allNovels">
             <ul>
                 <li v-for="novel in AllNovels" :key="novel.novelId">
                     <div class="name">
@@ -32,18 +32,21 @@
                         </router-link>
                     </div>
                     <div class="summary">{{novel.summary}}</div>
-                    <div class="lastSection">
+                    <div class="lastSection" v-if="novel.lastSectionId">
                         <router-link :to="getEncryptLink(novel.novelId, novel.lastSectionId)">
                             {{novel.lastSectionTitle}}
                         </router-link>
                         <span>
-                            (05-07 13:25)
+                            ({{dateFormat(novel.updatedTime, 'MM-dd HH:mm')}})
                         </span>
                     </div>
                     <div class="author">{{novel.author}}</div>
                     <AppClear/>
                 </li>
             </ul>
+            <div v-if="!AllNovels.length" class="empty-result">
+                没有相关小说
+            </div>
             <AppClear/>
         </AppPanel>
     </div>
@@ -73,16 +76,40 @@
                     url += '/' + Util.encryptUrl(sectionId);
                 }
                 return url;
+            },
+            init: function () {
+                let key = this.$route.query.key;
+                if (key) {
+                    key = Util.decryptUrl(key);
+                } else {
+                    key = '';
+                }
+
+                // 加载小说列表
+                this.http.post('/novel', {key: key}).then(res => {
+                    this.AllNovels = res.data.novels;
+                }).catch(res => {
+                    this.error(res.respMsg);
+                });
+            },
+            loadNewNovels: function () {
+                // 最新小说
+                this.http.get('/novel/new').then(res => {
+                    this.novels = res.data.novels;
+                }).catch(res => {
+                    this.error(res.respMsg);
+                });
             }
         },
         mounted() {
-            // 加载小说列表
-            this.http.post('/novel').then(res => {
-                this.novels = res.data.novels;
-                this.AllNovels = res.data.AllNovels;
-            }).catch(res => {
-                this.error(res.respMsg);
-            });
+            this.init();
+
+            this.loadNewNovels();
+        },
+        watch: {
+            '$route'() {
+                this.init();
+            }
         }
     };
 </script>
@@ -150,6 +177,13 @@
     .allNovels {
         margin-top: 20px;
 
+        .empty-result {
+            text-align: center;
+            color: #999;
+            font-size: 15px;
+            line-height: 120px;
+        }
+
         ul {
             list-style: none;
             padding: 0;
@@ -174,7 +208,7 @@
 
                 .summary {
                     float: left;
-                    width: 480px;
+                    width: 550px;
                     color: #999;
                     font-size: 13px;
                     overflow:hidden;
