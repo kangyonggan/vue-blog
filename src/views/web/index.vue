@@ -67,7 +67,7 @@
             return {
                 baseUrl: Config.baseUrl,
                 articles: [],
-                offset: 0,
+                index: 0,
                 interval: null,
                 novels: [],
                 photos: [{
@@ -109,14 +109,15 @@
                 return '/novel/' + Util.encryptUrl(novelId);
             },
             showImg: function (index) {
+                this.index = index;
                 // 获取图片数组
                 let photos = document.getElementById('photos');
                 let images = photos.getElementsByTagName('img');
-                this.offset = (images.length - index) % images.length;
+                let offset = (images.length - index) % images.length;
                 // 计算每张图片按Y轴旋转的角度
                 let deg = Math.floor(360 / images.length);
                 for (let i = 0; i < images.length; i++) {
-                    images[i].style = 'transform: rotateX(-15deg) rotateY(' + deg * (i + this.offset) + 'deg) translateZ(380px)';
+                    images[i].style = 'transform: rotateX(-15deg) rotateY(' + deg * (i + offset) + 'deg) translateZ(380px);';
                 }
             },
             clearInterval: function () {
@@ -126,13 +127,13 @@
                 this.clearInterval();
                 let that = this;
                 this.interval = setInterval(function () {
-                    that.offset += 1;
-                    if (that.offset >= that.photos.length) {
-                        that.offset = 0;
+                    that.index += 1;
+                    if (that.index >= that.photos.length) {
+                        that.index = 0;
                     }
 
-                    that.showImg(that.offset);
-                }, 2500);
+                    that.showImg(that.index);
+                }, 2000);
             }
         },
         mounted() {
@@ -149,7 +150,7 @@
                 this.error(res.respMsg);
             });
 
-            this.showImg(this.offset);
+            this.showImg(this.index);
             this.startInterval();
         }
     };
@@ -320,6 +321,7 @@
             cursor: pointer;
             box-shadow: 1px -1px 6px #666;
             border-radius: 4px;
+            transition: transform 1s;
         }
 
     }
