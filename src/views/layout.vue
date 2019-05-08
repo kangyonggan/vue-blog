@@ -13,6 +13,8 @@
         </div>
 
         <Footer/>
+
+        <BackTop></BackTop>
     </div>
 </template>
 
