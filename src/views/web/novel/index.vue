@@ -7,7 +7,7 @@
                 <li v-for="novel in novels" :key="novel.novelId">
                     <router-link :to="getEncryptLink(novel.novelId)">
                         <img v-if="novel.cover" :src="baseUrl + '/' + novel.cover"/>
-                        <img v-if="!novel.cover" src="/src/assets/images/nocover.jpg"/>
+                        <img v-else src="/src/assets/images/nocover.jpg"/>
                     </router-link>
                     <div class="info">
                         <div class="top">

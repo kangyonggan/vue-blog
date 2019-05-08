@@ -24,6 +24,11 @@
                 <div v-if="!articles.length" class="empty-result">
                     没有相关文章
                 </div>
+                <div v-else class="more">
+                    <router-link to="/article">
+                        查看更多
+                    </router-link>
+                </div>
                 <AppClear/>
             </div>
         </div>
@@ -37,7 +42,7 @@
                 <div v-for="novel in novels" :key="novel.novelId" class="novel">
                     <router-link :to="getNovelLink(novel.novelId)">
                         <img v-if="novel.cover" :src="baseUrl + '/' + novel.cover"/>
-                        <img v-if="!novel.cover" src="/src/assets/images/nocover.jpg"/>
+                        <img v-else src="/src/assets/images/nocover.jpg"/>
                     </router-link>
                     <div class="info">
                         <div class="top">
@@ -51,6 +56,11 @@
                 </div>
                 <div v-if="!novels.length" class="empty-result">
                     没有相关小说
+                </div>
+                <div v-else class="more">
+                    <router-link to="/novel">
+                        查看更多
+                    </router-link>
                 </div>
                 <AppClear/>
             </div>
@@ -169,6 +179,17 @@
         clear: both;
         background: #fff;
 
+        .more {
+            clear: both;
+            text-align: center;
+            padding-top: 30px;
+
+            a {
+                font-size: 14px;
+                color: @primary-color;
+            }
+        }
+
         .empty-result {
             text-align: center;
             color: #999;
@@ -195,7 +216,7 @@
     .articles {
         padding-bottom: 30px;
 
-        a:hover {
+        .article:hover {
             border-top: 4px solid @primary-color;
             box-shadow: 0 30px 30px 0 rgba(0, 0, 0, 0.1);
         }
