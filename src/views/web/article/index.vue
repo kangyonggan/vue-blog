@@ -95,13 +95,19 @@
             init: function () {
                 let pageNum = this.$route.query.pageNum;
                 if (pageNum) {
-                    pageNum = Util.decrypt(pageNum);
+                    pageNum = Util.decryptUrl(pageNum);
                 } else {
                     pageNum = 1;
                 }
+                let key = this.$route.query.key;
+                if (key) {
+                    key = Util.decryptUrl(key);
+                } else {
+                    key = '';
+                }
 
                 // 加载文章列表
-                this.http.post('/article', {pageNum: pageNum}).then(res => {
+                this.http.post('/article', {pageNum: pageNum, key: key}).then(res => {
                     this.pageInfo = res.data.pageInfo;
                 }).catch(res => {
                     this.error(res.respMsg);

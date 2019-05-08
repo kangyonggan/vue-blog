@@ -72,6 +72,21 @@ util.encrypt = function (data) {
 };
 
 /**
+ * url简单加密
+ *
+ * @param url
+ * @returns {string}
+ */
+util.encryptUrlSimple = function (url) {
+    url = CryptoJS.AES.encrypt('' + url, util.AES_KEY, {
+        iv: util.AES_IV,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.ZeroPadding
+    }).toString();
+    return url;
+};
+
+/**
  * url加密
  *
  * @param url

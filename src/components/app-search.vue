@@ -11,10 +11,10 @@
                 <img src="/src/assets/images/search-top-icon.png" :style="'left:' + imgLeft + 'px'">
                 <div class="input">
                     <Icon type="ios-search" size="28" color="#bdc4d5"/>
-                    <input name="key" autocomplete='off' :placeholder="placeholder"/>
+                    <input name="key" v-model="key" autocomplete='off' :placeholder="placeholder" @keyup.enter="search"/>
                     <div class="input-append">
                         <span>|</span>
-                        <a href="javascript:">搜 索</a>
+                        <a href="javascript:" @click="search">搜 索</a>
                     </div>
                 </div>
             </div>
@@ -25,6 +25,7 @@
 
 <script>
     import Vue from 'vue';
+    import Util from '@/libs/util';
 
     const AppSearch = {
         props: {
@@ -45,7 +46,8 @@
                 }],
                 imgLeft: 25,
                 currIndex: 0,
-                placeholder: '请输入需要查找的文章标题，支持模糊搜索'
+                placeholder: '请输入需要查找的文章标题，支持模糊搜索',
+                key: ''
             };
         },
         mounted: function () {
@@ -57,6 +59,14 @@
             } else if (this.currIndex === 1) {
                 this.placeholder = '请输入需要查找的小说名称或作者，支持模糊搜索';
             }
+
+            let key = this.$route.query.key;
+            if (key) {
+                key = Util.decryptUrl(key);
+            } else {
+                key = '';
+            }
+            this.key = key;
         },
         methods: {
             /**
@@ -82,6 +92,25 @@
                 }
                 this.imgLeft = 25 + currIndex * 80;
                 e.target.setAttribute('class', 'active');
+            },
+            search: function () {
+                if (this.currIndex === 0) {
+                    // 搜索文章
+                    this.$router.push({
+                        path: '/article',
+                        query: {
+                            key: Util.encryptUrlSimple(this.key)
+                        }
+                    });
+                } else {
+                    // 搜索小说
+                    this.$router.push({
+                        path: '/novel',
+                        query: {
+                            key: Util.encryptUrlSimple(this.key)
+                        }
+                    });
+                }
             }
         }
     };
