@@ -10,12 +10,10 @@
 
 <script>
     import Util from '@/libs/util';
-    import Config from '@/config/config';
 
     export default {
         data() {
             return {
-                baseUrl: Config.baseUrl,
                 video: {
                     title: '加载中'
                 },

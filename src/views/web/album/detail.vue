@@ -22,12 +22,10 @@
 
 <script>
     import Util from '@/libs/util';
-    import Config from '@/config/config';
 
     export default {
         data() {
             return {
-                baseUrl: Config.baseUrl,
                 album: {
                     albumName: '加载中'
                 },

@@ -13,4 +13,7 @@ import './app-breadcrumb';
 // 清除浮动
 import './app-clear';
 
+// 分页组件
+import './app-pagination';
+
 

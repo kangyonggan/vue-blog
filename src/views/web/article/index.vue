@@ -32,6 +32,9 @@
             <div v-if="!pageInfo.size" class="empty-result">
                 没有相关文章
             </div>
+            <div v-else>
+                <AppPagination url="/article" :page-info="pageInfo"/>
+            </div>
         </AppPanel>
 
         <AppPanel :width="380" float="right" title="大家都在看">
@@ -88,16 +91,40 @@
             formatIndex: function (index) {
                 index++;
                 return index < 10 ? '0' + index : index;
+            },
+            init: function () {
+                let pageNum = this.$route.query.pageNum;
+                if (pageNum) {
+                    pageNum = Util.decrypt(pageNum);
+                } else {
+                    pageNum = 1;
+                }
+
+                // 加载文章列表
+                this.http.post('/article', {pageNum: pageNum}).then(res => {
+                    this.pageInfo = res.data.pageInfo;
+                }).catch(res => {
+                    this.error(res.respMsg);
+                });
+            },
+            loadViewArticles: function () {
+                // 大家都在看
+                this.http.get('/article/view').then(res => {
+                    this.articles = res.data.articles;
+                }).catch(res => {
+                    this.error(res.respMsg);
+                });
             }
         },
         mounted() {
-            // 加载文章列表
-            this.http.post('/article').then(res => {
-                this.pageInfo = res.data.pageInfo;
-                this.articles = res.data.articles;
-            }).catch(res => {
-                this.error(res.respMsg);
-            });
+            this.init();
+
+            this.loadViewArticles();
+        },
+        watch: {
+            '$route'() {
+                this.init();
+            }
         }
     };
 </script>
@@ -201,11 +228,11 @@
     ul.hot-content {
         list-style: none;
         margin: 0;
-        padding: 8px;
+        padding: 10px;
 
         li {
             float: left;
-            height: 60px;
+            height: 65px;
             width: 364px;
             margin-top: 10px;
             border-bottom: 1px solid #d5d5d5;
