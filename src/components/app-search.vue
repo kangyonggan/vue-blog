@@ -92,6 +92,8 @@
                 }
                 this.imgLeft = 25 + currIndex * 80;
                 e.target.setAttribute('class', 'active');
+
+                this.currIndex = currIndex;
             },
             search: function () {
                 if (this.currIndex === 0) {
