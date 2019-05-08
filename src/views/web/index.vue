@@ -1,6 +1,9 @@
 <template>
     <div>
-        <AppSearch/>
+        <div class="photos" id="photos">
+            <img v-for="(photo, index) in photos" :key="index" :src="photo.thumb" @click="showImg(index)"
+                 @mouseenter="clearInterval()" @mouseleave="startInterval()"/>
+        </div>
 
         <div class="block">
             <h1 class="title">文 章</h1>
@@ -24,10 +27,7 @@
                 <AppClear/>
             </div>
         </div>
-        <div class="photos" id="photos">
-            <img v-for="(photo, index) in photos" :key="index" :src="photo.thumb" @click="showImg(index)"
-                 @mouseenter="clearInterval()" @mouseleave="startInterval()"/>
-        </div>
+
         <div class="block">
             <h1 class="title">小 说</h1>
             <div class="summary">
