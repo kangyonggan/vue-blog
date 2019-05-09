@@ -10,12 +10,15 @@
                     </dd>
                     <dt>
                         {{video.title}}
-                        <span class="pull-right">2019-01-10</span>
+                        <span class="pull-right">{{dateFormat(video.createdTime, 'yyyy-MM-dd')}}</span>
                     </dt>
                 </dl>
             </li>
         </ul>
 
+        <div v-if="!videos.length" class="empty-result">
+            没有相关视频
+        </div>
         <AppClear/>
     </AppPanel>
 </template>
@@ -55,6 +58,13 @@
     .video-list, .video-list dl, .video-list dt, .video-list dd {
         margin: 0;
         padding: 0;
+    }
+
+    .empty-result {
+        text-align: center;
+        color: #999;
+        font-size: 15px;
+        line-height: 120px;
     }
 
     .video-list {
