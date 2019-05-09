@@ -9,7 +9,11 @@
             <div class="right">
                 <div class="name">
                     {{novel.name}}
-                    <span>（更新完成）</span>
+                    <span>（{{getUpdateStatus()}}）</span>
+                    <a @click="pullNovel">
+                        <Icon type="ios-cloud-download-outline" />
+                        更新
+                    </a>
                 </div>
 
                 <div class="info">
@@ -18,13 +22,16 @@
                     </div>
                     <div class="item">
                         最新章节：
-                        <router-link :to="getEncryptLink(novel.novelId, novel.lastSectionId)">{{novel.lastSectionTitle}}</router-link>
+                        <router-link v-if="lastSection.sectionId"
+                                     :to="getEncryptLink(novel.novelId, lastSection.sectionId)">{{lastSection.title}}
+                        </router-link>
+                        <span v-else>无</span>
                     </div>
                     <div class="item">
-                        来　　源：<a href="http://biquge.cn" target="_blank">http://biquge.cn</a>
+                        来　　源：<a :href="source" target="_blank">{{source}}</a>
                     </div>
                     <div class="item">
-                        最后更新：2019-05-07 07:19:40
+                        最后更新：{{dateFormat(novelQueue.createdTime || novel.updatedTime, 'yyyy-MM-dd HH:mm')}}
                     </div>
 
                     <AppClear/>
@@ -45,6 +52,9 @@
                     <router-link :to="getEncryptLink(novel.novelId, section.sectionId)">{{section.title}}</router-link>
                 </li>
             </ul>
+            <div v-if="!lastSections.length" class="empty-result">
+                没有最新章节
+            </div>
 
             <AppClear :height="20"/>
         </AppPanel>
@@ -55,6 +65,9 @@
                     <router-link :to="getEncryptLink(novel.novelId, section.sectionId)">{{section.title}}</router-link>
                 </li>
             </ul>
+            <div v-if="!sections.length" class="empty-result">
+                没有相关章节
+            </div>
 
             <AppClear/>
             <AppReward/>
@@ -72,6 +85,8 @@
                 novel: {
                     name: '加载中'
                 },
+                source: '',
+                lastSection: {},
                 lastSections: [],
                 sections: [],
                 novelQueue: {},
@@ -98,12 +113,32 @@
                 }
                 return url;
             },
+            getUpdateStatus: function () {
+                if (!this.novelQueue.status) {
+                    return '更新完成';
+                } else if (this.novelQueue.status === 'Y') {
+                    return '更新完成';
+                } else if (this.novelQueue.status === 'I') {
+                    return '更新中';
+                } else if (this.novelQueue.status === 'N') {
+                    return '待更新';
+                }
+            },
+            pullNovel: function () {
+                this.http.post('/novel/pull', {'novelId': this.novel.novelId}).then(() => {
+                    this.success('已经加入更新队列，请稍后刷新查看');
+                }).catch(res => {
+                    this.error(res.respMsg);
+                });
+            },
             init: function () {
-                this.http.post('/novel/detail', {'novelId': encodeURIComponent(this.$route.params.novelId)}).then(res => {
+                this.http.post('/novel/detail', {'novelId': Util.decrypt(this.$route.params.novelId)}).then(res => {
                     this.novel = res.data.novel;
-                    this.novelQueue = res.data.novelQueue;
+                    this.novelQueue = res.data.novelQueue || {};
+                    this.lastSection = res.data.lastSection || {};
                     this.lastSections = res.data.lastSections;
                     this.sections = res.data.sections;
+                    this.source = res.data.source;
                     this.breadcrumbs[1].name = this.novel.name;
                     Util.title(this.novel.name);
                 }).catch(res => {
@@ -119,6 +154,13 @@
 
 <style scoped lang="less">
     @import "../../../../my-theme/custom";
+
+    .empty-result {
+        text-align: center;
+        color: #999;
+        font-size: 15px;
+        line-height: 120px;
+    }
 
     .novel {
         padding: 10px;
@@ -148,6 +190,12 @@
                 span {
                     font-size: 14px;
                     color: @primary-color;
+                }
+
+                a {
+                    color: @primary-color;
+                    font-size: 15px;
+                    float: right;
                 }
             }
 
