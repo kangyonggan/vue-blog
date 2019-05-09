@@ -2,7 +2,7 @@
     <div class="navbar">
         <div class="content">
             <router-link to="/" class="logo">
-                <img src="/src/assets/images/logo.png"/>
+                <img src="/static/images/logo.png"/>
             </router-link>
 
             <div class="navList">

@@ -54,7 +54,7 @@
                     </ul>
                 </div>
                 <div class="qrcode">
-                    <img src="/src/assets/images/weixin.png"/>
+                    <img src="/static/images/weixin.png"/>
                 </div>
             </div>
             <div class="footer-bottom">

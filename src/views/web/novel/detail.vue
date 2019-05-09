@@ -4,7 +4,7 @@
 
         <AppPanel class="novel">
             <img v-if="novel.cover" :src="baseUrl + '/' + novel.cover"/>
-            <img v-else src="/src/assets/images/nocover.jpg"/>
+            <img v-else src="/static/images/nocover.jpg"/>
 
             <div class="right">
                 <div class="name">

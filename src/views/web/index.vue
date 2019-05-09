@@ -42,7 +42,7 @@
                 <div v-for="novel in novels" :key="novel.novelId" class="novel">
                     <router-link :to="getNovelLink(novel.novelId)">
                         <img v-if="novel.cover" :src="baseUrl + '/' + novel.cover"/>
-                        <img v-else src="/src/assets/images/nocover.jpg"/>
+                        <img v-else src="/static/images/nocover.jpg"/>
                     </router-link>
                     <div class="info">
                         <div class="top">
@@ -79,21 +79,21 @@
                 interval: null,
                 novels: [],
                 photos: [{
-                    thumb: '/src/assets/images/photos/100_1.jpeg'
+                    thumb: '/static/images/photos/1.jpeg'
                 }, {
-                    thumb: '/src/assets/images/photos/100_21.jpeg'
+                    thumb: '/static/images/photos/2.jpeg'
                 }, {
-                    thumb: '/src/assets/images/photos/100_10.jpeg'
+                    thumb: '/static/images/photos/3.jpeg'
                 }, {
-                    thumb: '/src/assets/images/photos/100_20.jpeg'
+                    thumb: '/static/images/photos/4.jpeg'
                 }, {
-                    thumb: '/src/assets/images/photos/100_6.jpeg'
+                    thumb: '/static/images/photos/5.jpeg'
                 }, {
-                    thumb: '/src/assets/images/photos/100_15.jpeg'
+                    thumb: '/static/images/photos/6.jpeg'
                 }, {
-                    thumb: '/src/assets/images/photos/100_2.jpeg'
+                    thumb: '/static/images/photos/7.jpeg'
                 }, {
-                    thumb: '/src/assets/images/photos/100_13.jpeg'
+                    thumb: '/static/images/photos/8.jpeg'
                 }]
             };
         },

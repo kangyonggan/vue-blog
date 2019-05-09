@@ -8,7 +8,7 @@
             </ul>
 
             <div class="form">
-                <img src="/src/assets/images/search-top-icon.png" :style="'left:' + imgLeft + 'px'">
+                <img src="/static/images/search-top-icon.png" :style="'left:' + imgLeft + 'px'">
                 <div class="input">
                     <Icon type="ios-search" size="28" color="#bdc4d5"/>
                     <input name="key" v-model="key" autocomplete='off' :placeholder="placeholder" @keyup.enter="search"/>

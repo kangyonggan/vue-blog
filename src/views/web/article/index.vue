@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <router-link class="right" :to="getEncryptLink(article.articleId)">
-                        <img src="/src/assets/images/article.png">
+                        <img src="/static/images/article.png">
                     </router-link>
                 </li>
             </ul>
