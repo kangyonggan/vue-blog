@@ -8,6 +8,7 @@
         "dev": "webpack-dev-server --content-base ./ --inline --hot --compress --history-api-fallback --config webpack.dev.config.js --port=8888",
         "mock": "webpack-dev-server --content-base ./ --inline --hot --compress --history-api-fallback --config webpack.mock.config.js --port=8088",
         "build": "webpack --progress --hide-modules --config webpack.prod.config.js",
+        "deploy": "scp dist/* root@kangyonggan.com:/root/apps/dist/; scp index_prod.html root@kangyonggan.com:/root/apps/index.html",
         "lint": "eslint --fix --ext .js,.vue src"
     },
     "repository": {
