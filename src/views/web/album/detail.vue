@@ -10,7 +10,7 @@
                             <img :src="photo.thumb" :data-origin="album.url"/>
                         </dd>
                         <dt>
-                            2019-05-07
+                            {{dateFormat(photo.createdTime, 'yyyy-MM-dd')}}
                         </dt>
                     </dl>
                 </li>
@@ -40,7 +40,7 @@
         },
         methods: {
             init: function () {
-                this.http.post('/album/detail', {'albumId': encodeURIComponent(this.$route.params.albumId)}).then(res => {
+                this.http.post('/album/detail', {'albumId': Util.decrypt(this.$route.params.albumId)}).then(res => {
                     this.album = res.data.album;
                     this.albumPhotos = res.data.albumPhotos;
                     this.breadcrumbs[1].name = this.album.albumName;

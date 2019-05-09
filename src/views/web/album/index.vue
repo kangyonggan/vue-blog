@@ -10,11 +10,15 @@
                     </dd>
                     <dt>
                         {{album.albumName}}
-                        <span class="pull-right">2019-01-10</span>
+                        <span class="pull-right">{{dateFormat(album.createdTime, 'yyyy-MM-dd')}}</span>
                     </dt>
                 </dl>
             </li>
         </ul>
+
+        <div v-if="!albums.length" class="empty-result">
+            没有相关相册
+        </div>
 
         <AppClear/>
     </AppPanel>
@@ -55,6 +59,13 @@
     .album-list, .album-list dl, .album-list dt, .album-list dd {
         margin: 0;
         padding: 0;
+    }
+
+    .empty-result {
+        text-align: center;
+        color: #999;
+        font-size: 15px;
+        line-height: 120px;
     }
 
     .album-list {
