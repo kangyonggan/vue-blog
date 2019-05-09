@@ -5,7 +5,7 @@
                 <Icon type="ios-arrow-back"/>
                 上一章
             </router-link>
-            <a  v-if="!prevSection.sectionId">
+            <a v-else>
                 没有上一章了
             </a>
         </li>
@@ -19,7 +19,7 @@
                 下一章
                 <Icon type="ios-arrow-forward"/>
             </router-link>
-            <a v-if="!nextSection.sectionId">
+            <a v-else @click="pullNovel">
                 更新
                 <Icon type="ios-cloud-download-outline"/>
             </a>
@@ -56,6 +56,13 @@
                     url += '/' + Util.encryptUrl(sectionId);
                 }
                 return url;
+            },
+            pullNovel: function () {
+                this.http.post('/novel/pull', {'novelId': this.novel.novelId}).then(() => {
+                    this.success('已经加入更新队列，请稍后刷新查看');
+                }).catch(res => {
+                    this.error(res.respMsg);
+                });
             }
         }
     };

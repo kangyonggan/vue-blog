@@ -67,7 +67,7 @@ Mock.mock('/novel/detail', 'post', () => {
 /**
  * 查询小说章节
  */
-Mock.mock('/section', 'post', () => {
+Mock.mock('/novel/section', 'post', () => {
     return section;
 });
 

@@ -11,8 +11,8 @@
                     {{novel.name}}
                     <span>（{{getUpdateStatus()}}）</span>
                     <a @click="pullNovel">
-                        <Icon type="ios-cloud-download-outline" />
                         更新
+                        <Icon type="ios-cloud-download-outline"/>
                     </a>
                 </div>
 

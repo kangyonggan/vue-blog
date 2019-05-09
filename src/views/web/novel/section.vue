@@ -58,14 +58,14 @@
                 return url;
             },
             init: function () {
-                this.http.post('/section', {
-                    'novelId': encodeURIComponent(this.$route.params.novelId),
-                    'sectionId': encodeURIComponent(this.$route.params.sectionId),
+                this.http.post('/novel/section', {
+                    'novelId': Util.decrypt(this.$route.params.novelId),
+                    'sectionId': Util.decrypt(this.$route.params.sectionId),
                 }).then(res => {
                     this.novel = res.data.novel;
-                    this.section = res.data.section;
-                    this.prevSection = res.data.prevSection;
-                    this.nextSection = res.data.nextSection;
+                    this.section = res.data.section || {};
+                    this.prevSection = res.data.prevSection || {};
+                    this.nextSection = res.data.nextSection || {};
 
                     this.breadcrumbs[1].name = this.novel.name;
                     this.breadcrumbs[1].link = '/novel/' + Util.encryptUrl(this.novel.novelId);
@@ -78,6 +78,11 @@
         },
         mounted() {
             this.init();
+        },
+        watch: {
+            '$route'() {
+                this.init();
+            }
         }
     };
 </script>
