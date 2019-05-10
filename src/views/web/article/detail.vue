@@ -78,6 +78,16 @@
             line-height: 28px;
         }
 
+        ul {
+            list-style: disc;
+            padding-left: 55px;
+        }
+
+        ol {
+            list-style: decimal;
+            padding-left: 55px;
+        }
+
         ul li, ol li {
             line-height: 28px;
         }
