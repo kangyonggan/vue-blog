@@ -101,6 +101,7 @@
                 float: left;
 
                 .title {
+                    font-size: 16px;
                     font-weight: bold;
                     color: #333;
                     padding: 5px;
