@@ -87,6 +87,11 @@
             background: #000;
             color: #fff;
         }
+
+        blockquote {
+            border-left: 5px solid @primary-color;
+            text-indent: 20px;
+        }
     }
 
     .title {
