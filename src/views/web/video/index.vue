@@ -5,7 +5,7 @@
                 <dl>
                     <dd>
                         <router-link :to="getEncryptLink(video.videoId)"
-                           :style="'background-image: url(' + baseUrl + video.cover + ')'"></router-link>
+                           :style="'background-image: url(' + video.cover + ')'"></router-link>
                         <div class="size">{{video.viewNum}}</div>
                     </dd>
                     <dt>
