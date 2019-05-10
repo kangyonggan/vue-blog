@@ -9,7 +9,7 @@
                     <div class="left">
                         <router-link class="title" :to="getEncryptLink(article.articleId)" :title="article.title">
                             <span class="big">{{article.title.substring(0, 1)}}</span>
-                            <span>{{article.title.substring(1)}}</span>
+                            <span class="small">{{article.title.substring(1)}}</span>
                         </router-link>
                         <div class="summary">{{article.summary}}</div>
                         <div class="info">
@@ -165,23 +165,30 @@
                 padding-left: 10px;
 
                 .title {
-                    span {
+                    span.small {
+                        float: left;
+                        display: inline-block;
+                        width: 480px;
                         font-size: 20px;
                         font-weight: 500;
                         color: #262626;
                         cursor: pointer;
-                        float: left;
-                        line-height: 40px;
+                        line-height: 55px;
+                        height: 45px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        text-align: left;
                     }
 
                     span.big {
+                        float: left;
                         font-size: 40px;
                     }
                 }
 
                 .summary {
                     clear: both;
-                    margin-top: 8px;
                     color: #595959;
                     font-size: 14px;
                     height: 50px;
@@ -190,7 +197,7 @@
                 }
 
                 .info {
-                    margin-top: 12px;
+                    margin-top: 3px;
                     font-size: 12px;
                     color: #8c8c8c;
 
