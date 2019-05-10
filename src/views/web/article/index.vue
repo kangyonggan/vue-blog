@@ -7,7 +7,7 @@
                 <li v-for="(article, index) in pageInfo.list" :key="index"
                     :class="{'no-border': index === pageInfo.pageSize - 1}">
                     <div class="left">
-                        <router-link class="title" :to="getEncryptLink(article.articleId)">
+                        <router-link class="title" :to="getEncryptLink(article.articleId)" :title="article.title">
                             <span class="big">{{article.title.substring(0, 1)}}</span>
                             <span>{{article.title.substring(1)}}</span>
                         </router-link>
@@ -43,7 +43,9 @@
                     :class="{'no-border': index === articles.length - 1}">
                     <span class="index">{{formatIndex(index)}}</span>
                     <div class="right">
-                        <router-link :to="getEncryptLink(article.articleId)">阿里员工都在用的知识管理工具，究竟有何特别？</router-link>
+                        <router-link :to="getEncryptLink(article.articleId)" :title="article.title">
+                            {{article.title}}
+                        </router-link>
 
                         <div class="info">
                             <span>
@@ -245,6 +247,7 @@
             border-bottom: 1px solid #d5d5d5;
 
             span.index {
+                float: left;
                 display: inline-block;
                 width: 30px;
                 height: 30px;
@@ -257,7 +260,8 @@
             }
 
             div.right {
-                float: right;
+                width: 304px;
+                float: left;
 
                 a {
                     display: block;
