@@ -102,6 +102,10 @@
             }
         }
 
+        hr {
+            margin: 20px 0;
+        }
+
         code {
             color: @primary-color;
         }
