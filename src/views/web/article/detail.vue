@@ -101,7 +101,7 @@
 
         blockquote {
             border-left: 5px solid @primary-color;
-            text-indent: 20px;
+            padding-left: 20px;
         }
 
         table {
