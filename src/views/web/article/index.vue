@@ -182,8 +182,9 @@
                     margin-top: 8px;
                     color: #595959;
                     font-size: 14px;
-                    line-height: 1.8;
-                    min-height: 50px;
+                    height: 50px;
+                    line-height: 25px;
+                    overflow: hidden;
                 }
 
                 .info {
