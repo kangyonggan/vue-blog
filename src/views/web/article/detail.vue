@@ -96,7 +96,14 @@
         pre {
             padding: 10px;
             background: #000;
-            color: #fff;
+
+            code {
+                color: #fff;
+            }
+        }
+
+        code {
+            color: @primary-color;
         }
 
         blockquote {
