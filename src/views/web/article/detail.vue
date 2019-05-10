@@ -14,6 +14,7 @@
 
 <script>
     import Util from '@/libs/util';
+
     let marked = require('marked');
 
     export default {
@@ -101,6 +102,36 @@
         blockquote {
             border-left: 5px solid @primary-color;
             text-indent: 20px;
+        }
+
+        table {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-spacing: 0;
+
+            th {
+                height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+                background: #f5f5f5;
+                color: #595959;
+            }
+
+            td {
+                height: 35px;
+                line-height: 35px;
+                font-size: 13px;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+                color: #595959;
+            }
+
+            tr:nth-child(even) td {
+                background: #f5f5f5;
+            }
+
         }
     }
 
