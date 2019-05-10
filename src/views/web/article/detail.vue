@@ -75,7 +75,11 @@
         }
 
         p {
-            line-height: 25px;
+            line-height: 28px;
+        }
+
+        ul li, ol li {
+            line-height: 28px;
         }
 
         pre {
