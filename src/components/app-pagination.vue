@@ -1,5 +1,5 @@
 <template>
-    <ul class="pagination" v-if="pageInfo.list && pageInfo.pages">
+    <ul class="pagination" v-if="pageInfo.list && pageInfo.pages > 1">
         <li v-if="pageInfo.hasPreviousPage">
             <router-link :to="url + '?pageNum=' + getData('1') + '&' + params" title="首页">
                 首
