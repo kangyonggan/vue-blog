@@ -3,11 +3,11 @@
         <Button type="error" size="large" @click="show = !show">打　赏</Button>
         <div v-if="show" class="imgs">
             <div class="imgPanel">
-                <img src="/src/assets/images/ali.png" @mouseenter="startingAli = true" @mouseleave="startingAli = false"/>
+                <img src="/static/images/ali.png" @mouseenter="startingAli = true" @mouseleave="startingAli = false"/>
                 <p :class="{anim: startingAli}">支付宝</p>
             </div>
             <div class="imgPanel" style="margin-left: 40px;">
-                <img src="/src/assets/images/wechat.png" @mouseenter="startingWechat = true" @mouseleave="startingWechat = false"/>
+                <img src="/static/images/wechat.png" @mouseenter="startingWechat = true" @mouseleave="startingWechat = false"/>
                 <p :class="{anim: startingWechat}">微　信</p>
             </div>
         </div>
