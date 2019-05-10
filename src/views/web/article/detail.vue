@@ -54,12 +54,35 @@
     };
 </script>
 
-<style scoped lang="less">
+<style lang="less">
     @import "../../../../my-theme/custom";
 
     .detail {
         clear: both;
         padding: 20px;
+
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            color: @primary-color;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+
+        p {
+            line-height: 25px;
+        }
+
+        pre {
+            padding: 10px;
+            background: #000;
+            color: #fff;
+        }
     }
 
     .title {
