@@ -7,7 +7,7 @@
                 <li v-for="photo in albumPhotos" :key="photo.photoId">
                     <dl>
                         <dd>
-                            <img :src="photo.thumb" :data-origin="album.url"/>
+                            <img :src="baseUrl + '/' + photo.thumb" :data-origin="baseUrl + '/' + photo.url"/>
                         </dd>
                         <dt>
                             {{dateFormat(photo.createdTime, 'yyyy-MM-dd')}}
