@@ -5,7 +5,7 @@
         <AppPanel class="detail">
             <div class="title">{{article.title}}</div>
 
-            <div v-html="compiledMarkdown"></div>
+            <div id="markdown-content" v-html="compiledMarkdown"></div>
 
             <AppReward/>
         </AppPanel>
@@ -46,7 +46,16 @@
                 if (!content) {
                     return '';
                 }
-                return marked(content);
+                let html = marked(content);
+
+                this.$nextTick(() => {
+                    let allLinks = document.getElementById('markdown-content').querySelectorAll('a');
+                    allLinks.forEach((e) => {
+                        e.setAttribute('target', '_blank');
+                    })
+                });
+
+                return html;
             }
         },
         mounted() {
