@@ -56,7 +56,7 @@
 </script>
 
 <style lang="less">
-    @import "../../../../my-theme/custom";
+    @import "../../../my-theme/custom";
 
     .detail {
         clear: both;

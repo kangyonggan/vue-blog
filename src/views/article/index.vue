@@ -138,7 +138,7 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../../../my-theme/custom";
+    @import "../../../my-theme/custom";
 
     .empty-result {
         text-align: center;

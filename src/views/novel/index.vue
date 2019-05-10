@@ -115,7 +115,7 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../../../my-theme/custom";
+    @import "../../../my-theme/custom";
 
     .novels {
         padding: 20px;

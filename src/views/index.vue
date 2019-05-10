@@ -168,7 +168,7 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../../my-theme/custom";
+    @import "../../my-theme/custom";
 
     .block {
         margin-bottom: 30px;

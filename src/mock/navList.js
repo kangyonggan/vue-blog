@@ -17,12 +17,6 @@ export default {
         }, {
             dictCode: '/video',
             value: '视频'
-        }, {
-            dictCode: '/tools',
-            value: '工具'
-        }, {
-            dictCode: '/game',
-            value: '游戏'
         }]
     }
 };
