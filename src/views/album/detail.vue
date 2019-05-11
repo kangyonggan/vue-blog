@@ -22,6 +22,9 @@
 
 <script>
     import Util from '@/libs/util';
+    import $ from "jquery";
+    window.jQuery = $;
+    require('../../libs/zoomer.js');
 
     export default {
         data() {
@@ -46,6 +49,9 @@
                     this.breadcrumbs[1].name = this.album.albumName;
                     Util.title(this.album.albumName);
 
+                    this.$nextTick(() => {
+                        $('.album-list').zoomer();
+                    });
                 }).catch(res => {
                     this.error(res.respMsg);
                 });
