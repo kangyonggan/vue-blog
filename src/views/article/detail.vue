@@ -14,6 +14,9 @@
 
 <script>
     import Util from '@/libs/util';
+    import $ from "jquery";
+    window.jQuery = $;
+    require('../../libs/zoomer.js');
 
     let marked = require('marked');
 
@@ -35,6 +38,10 @@
                     this.article = res.data.article;
                     Util.title(this.article.title);
                     this.breadcrumbs[1].name = this.article.title;
+
+                    this.$nextTick(() => {
+                        $('#markdown-content').zoomer();
+                    });
                 }).catch(res => {
                     this.error(res.respMsg);
                 });
