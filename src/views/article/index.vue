@@ -6,7 +6,7 @@
             <ul class="tab-content">
                 <li v-for="(article, index) in pageInfo.list" :key="index"
                     :class="{'no-border': index === pageInfo.pageSize - 1}">
-                    <div class="left">
+                    <div :class="{left: true, 'total-width': !hasImg(article.content)}">
                         <router-link class="title" :to="getEncryptLink(article.articleId)" :title="article.title">
                             <span class="big">{{article.title.substring(0, 1)}}</span>
                             <span class="small">{{article.title.substring(1)}}</span>
@@ -24,8 +24,8 @@
                             </em>
                         </div>
                     </div>
-                    <router-link class="right" :to="getEncryptLink(article.articleId)">
-                        <img src="/static/images/article.png">
+                    <router-link class="right" :to="getEncryptLink(article.articleId)" v-if="hasImg(article.content)">
+                        <img :src="getFirstImg(article.content)">
                     </router-link>
                 </li>
             </ul>
@@ -89,6 +89,21 @@
              */
             getEncryptLink: function (articleId) {
                 return '/article/' + Util.encryptUrl(articleId);
+            },
+            hasImg: function (content) {
+                if (!content) {
+                    return false;
+                }
+                console.log(content);
+                console.log(content.indexOf('![](https') > -1);
+                return content.indexOf('![](https') > -1;
+            },
+            getFirstImg: function (content) {
+                let startIndex = content.indexOf('![](https');
+                if (startIndex > -1) {
+                    let endIndex = content.indexOf(')', startIndex);
+                    return content.substring(startIndex + 4, endIndex);
+                }
             },
             formatIndex: function (index) {
                 index++;
@@ -225,12 +240,17 @@
                 }
             }
 
+            .total-width {
+                width: 760px;
+            }
+
             .right {
                 float: right;
                 width: 190px;
 
                 img {
                     width: 190px;
+                    max-height: 130px;
                     cursor: pointer;
                 }
             }

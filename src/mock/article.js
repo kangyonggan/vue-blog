@@ -9,116 +9,126 @@ export default {
             'categoryName': 'Java',
             'createdTime': 1556090343602,
             'content': '\n' +
-                '## 依赖\n' +
-                '```xml\n' +
-                '<parent>\n' +
-                '    <groupId>org.springframework.boot</groupId>\n' +
-                '    <artifactId>spring-boot-starter-parent</artifactId>\n' +
-                '    <version>2.1.3.RELEASE</version>\n' +
-                '    <relativePath/> <!-- lookup parent from repository -->\n' +
-                '</parent>\n' +
+                '### 实现原理\n' +
+                '主要使用transform的rotate属性，将线条组合成Loading图形 (也就是菊花图形)。\n' +
                 '\n' +
-                '...\n' +
+                'animation实现将线条颜色由浅到深，再由深到浅来回变换的动画，通过animation-delay属性来使颜色的变换产生过渡的效果，从而达到类似于Loading动画的效果。\n' +
                 '\n' +
-                '\n' +
-                '<!--Log4j2 yml-->\n' +
-                '<dependency>\n' +
-                '    <groupId>org.springframework.boot</groupId>\n' +
-                '    <artifactId>spring-boot-starter-log4j2</artifactId>\n' +
-                '</dependency>\n' +
-                '<dependency>\n' +
-                '    <groupId>com.fasterxml.jackson.dataformat</groupId>\n' +
-                '    <artifactId>jackson-dataformat-yaml</artifactId>\n' +
-                '    <version>2.9.8</version>\n' +
-                '</dependency>\n' +
+                '### html代码\n' +
+                '```\n' +
+                '<div class="loading">\n' +
+                '    <span class="line1"></span>\n' +
+                '    <span class="line2"></span>\n' +
+                '    <span class="line3"></span>\n' +
+                '    <span class="line4"></span>\n' +
+                '    <span class="line5"></span>\n' +
+                '    <span class="line6"></span>\n' +
+                '    <span class="line7"></span>\n' +
+                '    <span class="line8"></span>\n' +
+                '</div>\n' +
                 '```\n' +
                 '\n' +
                 '<!-- more -->\n' +
                 '\n' +
-                '## log4j2.yml\n' +
-                '\n' +
+                '### css代码\n' +
                 '```\n' +
-                'Configuration:\n' +
-                '  status: warn\n' +
-                '  monitorInterval: 300\n' +
-                '\n' +
-                '  Appenders:\n' +
-                '    Console:\n' +
-                '      name: STDOUT\n' +
-                '      PatternLayout:\n' +
-                '        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%logger{36}.%t:%L] <%X{uuid}> - %msg%n"\n' +
-                '\n' +
-                '  Loggers:\n' +
-                '    Root:\n' +
-                '      level: info\n' +
-                '      additivity: true\n' +
-                '      AppenderRef:\n' +
-                '        - ref: STDOUT\n' +
-                '\n' +
-                '\n' +
-                '```\n' +
-                '\n' +
-                '## MvcConfigure.java\n' +
-                '\n' +
-                '```\n' +
-                'package com.kangyonggan.demo.configuration;\n' +
-                '\n' +
-                'import com.htsec.fes.interceptor.UUIDInterceptor;\n' +
-                'import org.springframework.context.annotation.Configuration;\n' +
-                'import org.springframework.web.servlet.config.annotation.InterceptorRegistry;\n' +
-                'import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;\n' +
-                '\n' +
-                '/**\n' +
-                ' * @author longjie\n' +
-                ' * @since\n' +
-                ' */\n' +
-                '@Configuration\n' +
-                'public class MvcConfigure implements WebMvcConfigurer {\n' +
-                '\n' +
-                '    @Override\n' +
-                '    public void addInterceptors(InterceptorRegistry registry) {\n' +
-                '        // UUID\n' +
-                '        registry.addInterceptor(new UUIDInterceptor()).addPathPatterns("/**");\n' +
-                '    }\n' +
+                '.loading {\n' +
+                '    position: fixed;\n' +
+                '    top: 0;\n' +
+                '    right: 0;\n' +
+                '    bottom: 0;\n' +
+                '    left: 0;\n' +
+                '    width: 80px;\n' +
+                '    height: 80px;\n' +
+                '    margin: auto;\n' +
+                '    z-index: 9999;\n' +
                 '}\n' +
                 '\n' +
+                '.loading span {\n' +
+                '    width: 4px;\n' +
+                '    height: 20px;\n' +
+                '    background-color: #ccc;\n' +
+                '    position: absolute;\n' +
+                '    left: 38px;\n' +
+                '    -webkit-animation: loading 1s infinite;\n' +
+                '}\n' +
+                '\n' +
+                '.loading .line1 {\n' +
+                '    background-color: #000;\n' +
+                '    -webkit-transform: rotate(0deg);\n' +
+                '    transform: rotate(0deg);\n' +
+                '    -webkit-animation-delay: .3s;\n' +
+                '}\n' +
+                '\n' +
+                '.loading .line2 {\n' +
+                '    top: 5px;\n' +
+                '    left: 52px;\n' +
+                '    -webkit-transform: rotate(45deg);\n' +
+                '    transform: rotate(45deg);\n' +
+                '    -webkit-animation-delay: .4s;\n' +
+                '}\n' +
+                '\n' +
+                '.loading .line3 {\n' +
+                '    top: 18px;\n' +
+                '    left: 57px;\n' +
+                '    -webkit-transform: rotate(90deg);\n' +
+                '    transform: rotate(90deg);\n' +
+                '    -webkit-animation-delay: .5s;\n' +
+                '}\n' +
+                '\n' +
+                '.loading .line4 {\n' +
+                '    top: 31px;\n' +
+                '    left: 52px;\n' +
+                '    -webkit-transform: rotate(135deg);\n' +
+                '    transform: rotate(135deg);\n' +
+                '    -webkit-animation-delay: .6s;\n' +
+                '}\n' +
+                '\n' +
+                '.loading .line5 {\n' +
+                '    top: 37px;\n' +
+                '    -webkit-animation-delay: .7s;\n' +
+                '}\n' +
+                '\n' +
+                '.loading .line6 {\n' +
+                '    top: 32px;\n' +
+                '    left: 24px;\n' +
+                '    -webkit-transform: rotate(-135deg);\n' +
+                '    transform: rotate(-135deg);\n' +
+                '    -webkit-animation-delay: .8s;\n' +
+                '}\n' +
+                '\n' +
+                '.loading .line7 {\n' +
+                '    top: 18px;\n' +
+                '    left: 19px;\n' +
+                '    -webkit-transform: rotate(-90deg);\n' +
+                '    transform: rotate(-90deg);\n' +
+                '    -webkit-animation-delay: .9s;\n' +
+                '}\n' +
+                '\n' +
+                '.loading .line8 {\n' +
+                '    top: 5px;\n' +
+                '    left: 24px;\n' +
+                '    -webkit-transform: rotate(-45deg);\n' +
+                '    transform: rotate(-45deg);\n' +
+                '    -webkit-animation-delay: 1s;\n' +
+                '}\n' +
+                '\n' +
+                '@-webkit-keyframes loading {\n' +
+                '    0% {\n' +
+                '        background-color: #ccc;\n' +
+                '    }\n' +
+                '    50% {\n' +
+                '        background-color: #000;\n' +
+                '    }\n' +
+                '    100% {\n' +
+                '        background-color: #ccc;\n' +
+                '    }\n' +
+                '}\n' +
                 '```\n' +
                 '\n' +
-                '## UUIDInterceptor.java\n' +
+                '### 效果图\n' +
                 '\n' +
-                '```java\n' +
-                'package com.kangyonggan.demo.configuration;\n' +
-                '\n' +
-                'import lombok.extern.log4j.Log4j2;\n' +
-                'import org.apache.logging.log4j.ThreadContext;\n' +
-                'import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;\n' +
-                '\n' +
-                'import javax.servlet.http.HttpServletRequest;\n' +
-                'import javax.servlet.http.HttpServletResponse;\n' +
-                'import java.util.UUID;\n' +
-                '\n' +
-                '/**\n' +
-                ' * @author kangyonggan\n' +
-                ' * @since 5/15/18\n' +
-                ' */\n' +
-                '@Log4j2\n' +
-                'public class UUIDInterceptor extends HandlerInterceptorAdapter {\n' +
-                '\n' +
-                '    @Override\n' +
-                '    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {\n' +
-                '        // 给log4j2设置线程变量uuid\n' +
-                '        ThreadContext.put("uuid", UUID.randomUUID().toString().replaceAll("-", ""));\n' +
-                '        return true;\n' +
-                '    }\n' +
-                '\n' +
-                '    @Override\n' +
-                '    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {\n' +
-                '        // 移除log4j2的线程变量uuid\n' +
-                '        ThreadContext.remove("uuid");\n' +
-                '    }\n' +
-                '\n' +
-                '}\n' +
-                '```'
+                '![](https://ws3.sinaimg.cn/large/006tNc79ly1g2w0mk6nkzg306y03mwex.gif)\n'
         }
     }
 };
