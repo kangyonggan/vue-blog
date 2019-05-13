@@ -94,8 +94,6 @@
                 if (!content) {
                     return false;
                 }
-                console.log(content);
-                console.log(content.indexOf('![](https') > -1);
                 return content.indexOf('![](https') > -1;
             },
             getFirstImg: function (content) {
