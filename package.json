@@ -6,6 +6,7 @@
     "scripts": {
         "init": "npm install",
         "dev": "webpack-dev-server --content-base ./ --inline --hot --compress --history-api-fallback --config webpack.dev.config.js --port=8888",
+        "hd": "webpack-dev-server --content-base ./ --inline --hot --compress --history-api-fallback --config webpack.hd.config.js --port=8808",
         "mock": "webpack-dev-server --content-base ./ --inline --hot --compress --history-api-fallback --config webpack.mock.config.js --port=8088",
         "build": "rm dist/*; webpack --progress --hide-modules --config webpack.prod.config.js",
         "deploy": "ssh root@kangyonggan.com 'rm -rf /srv/apps/dist/*' ;scp -r static/ root@kangyonggan.com:/srv/apps/; scp dist/* root@kangyonggan.com:/srv/apps/dist/; scp index_prod.html root@kangyonggan.com:/srv/apps/index.html",
