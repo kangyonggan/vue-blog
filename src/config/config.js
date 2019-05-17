@@ -6,7 +6,7 @@ if (Env === 'development') {
     baseUrl = 'http://localhost:8080';
 } else if (Env === 'hd') {
     baseUrl = 'https://kangyonggan.com/web';
-} else if (Env === 'prod') {
+} else if (Env === 'production') {
     baseUrl = 'https://kangyonggan.com/web';
 }
 
