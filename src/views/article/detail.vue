@@ -5,6 +5,8 @@
         <AppPanel class="detail">
             <div class="title">{{article.title}}</div>
 
+            <AppLoading :loading="!article.title"/>
+
             <div id="markdown-content" v-html="compiledMarkdown"></div>
 
             <AppReward/>
@@ -27,8 +29,9 @@
                     name: '文章',
                     link: '/article'
                 }, {
-                    name: '加载中'
+                    name: ''
                 }],
+                loading: true,
                 article: {}
             };
         },

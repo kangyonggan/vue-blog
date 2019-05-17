@@ -2,14 +2,18 @@
     <div>
         <AppBreadcrumb :list="breadcrumbs"/>
 
-        <Tools :novel="novel" :prev-section="prevSection" :next-section="nextSection"/>
+        <div v-if="section.title">
+            <Tools :novel="novel" :prev-section="prevSection" :next-section="nextSection"/>
 
-        <AppPanel class="section">
-            <div class="title">{{section.title}}</div>
-            <div v-html="section.content" class="section-content"></div>
-        </AppPanel>
+            <AppPanel class="section">
+                <div class="title">{{section.title}}</div>
+                <div v-html="section.content" class="section-content"></div>
+            </AppPanel>
 
-        <Tools :novel="novel" :prev-section="prevSection" :next-section="nextSection"/>
+            <Tools :novel="novel" :prev-section="prevSection" :next-section="nextSection"/>
+        </div>
+
+        <AppLoading :loading="!section.title"/>
 
         <AppReward/>
     </div>
@@ -26,7 +30,7 @@
             return {
                 baseUrl: Config.baseUrl,
                 novel: {
-                    name: '加载中'
+                    name: ''
                 },
                 section: {},
                 prevSection: {},
@@ -35,10 +39,10 @@
                     name: '小说',
                     link: '/novel'
                 }, {
-                    name: '小说详情',
+                    name: '',
                     link: ''
                 }, {
-                    name: '加载中'
+                    name: ''
                 }]
             };
         },

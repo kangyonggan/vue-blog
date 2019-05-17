@@ -13,7 +13,10 @@ import './app-breadcrumb';
 // 清除浮动
 import './app-clear';
 
-// 分页组件
+// 分页
 import './app-pagination';
+
+// 加载中
+import './app-loading';
 
 

@@ -15,6 +15,8 @@
                     </dl>
                 </li>
             </ul>
+
+            <AppLoading :loading="!albumPhotos.length"/>
             <AppClear/>
         </AppPanel>
     </div>

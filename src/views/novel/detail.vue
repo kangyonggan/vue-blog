@@ -3,46 +3,49 @@
         <AppBreadcrumb :list="breadcrumbs"/>
 
         <AppPanel class="novel">
-            <img v-if="novel.cover" :src="baseUrl + '/' + novel.cover"/>
-            <img v-else src="/static/images/nocover.jpg"/>
+            <div v-if="novel.novelId">
+                <img v-if="novel.cover" :src="baseUrl + '/' + novel.cover"/>
+                <img v-else src="/static/images/nocover.jpg"/>
 
-            <div class="right">
-                <div class="name">
-                    {{novel.name}}
-                    <span>（{{getUpdateStatus()}}）</span>
-                    <a @click="pullNovel">
-                        更新
-                        <Icon type="ios-cloud-download-outline"/>
-                    </a>
+                <div class="right">
+                    <div class="name">
+                        {{novel.name}}
+                        <span>（{{getUpdateStatus()}}）</span>
+                        <a @click="pullNovel">
+                            更新
+                            <Icon type="ios-cloud-download-outline"/>
+                        </a>
+                    </div>
+
+                    <div class="info">
+                        <div class="item">
+                            作　　者：{{novel.author}}
+                        </div>
+                        <div class="item">
+                            最新章节：
+                            <router-link v-if="lastSection.sectionId"
+                                         :to="getEncryptLink(novel.novelId, lastSection.sectionId)">{{lastSection.title}}
+                            </router-link>
+                            <span v-else>无</span>
+                        </div>
+                        <div class="item">
+                            来　　源：<a :href="source" target="_blank">{{source}}</a>
+                        </div>
+                        <div class="item">
+                            最后更新：{{dateFormat(novelQueue.createdTime || novel.updatedTime, 'yyyy-MM-dd HH:mm')}}
+                        </div>
+
+                        <AppClear/>
+                    </div>
+
+                    <div class="summary">
+                        {{novel.summary}}
+                    </div>
+
                 </div>
-
-                <div class="info">
-                    <div class="item">
-                        作　　者：{{novel.author}}
-                    </div>
-                    <div class="item">
-                        最新章节：
-                        <router-link v-if="lastSection.sectionId"
-                                     :to="getEncryptLink(novel.novelId, lastSection.sectionId)">{{lastSection.title}}
-                        </router-link>
-                        <span v-else>无</span>
-                    </div>
-                    <div class="item">
-                        来　　源：<a :href="source" target="_blank">{{source}}</a>
-                    </div>
-                    <div class="item">
-                        最后更新：{{dateFormat(novelQueue.createdTime || novel.updatedTime, 'yyyy-MM-dd HH:mm')}}
-                    </div>
-
-                    <AppClear/>
-                </div>
-
-                <div class="summary">
-                    {{novel.summary}}
-                </div>
-
             </div>
 
+            <AppLoading :loading="!novel.novelId"/>
             <AppClear/>
         </AppPanel>
 
@@ -52,9 +55,7 @@
                     <router-link :to="getEncryptLink(novel.novelId, section.sectionId)">{{section.title}}</router-link>
                 </li>
             </ul>
-            <div v-if="!lastSections.length" class="empty-result">
-                没有最新章节
-            </div>
+            <AppLoading :loading="!lastSections.length"/>
 
             <AppClear :height="20"/>
         </AppPanel>
@@ -65,9 +66,7 @@
                     <router-link :to="getEncryptLink(novel.novelId, section.sectionId)">{{section.title}}</router-link>
                 </li>
             </ul>
-            <div v-if="!sections.length" class="empty-result">
-                没有相关章节
-            </div>
+            <AppLoading :loading="!sections.length"/>
 
             <AppClear/>
             <AppReward/>
@@ -83,7 +82,7 @@
         data() {
             return {
                 novel: {
-                    name: '加载中'
+                    name: ''
                 },
                 source: '',
                 lastSection: {},
@@ -94,7 +93,7 @@
                     name: '小说',
                     link: '/novel'
                 }, {
-                    name: '加载中'
+                    name: ''
                 }]
             };
         },
@@ -154,13 +153,6 @@
 
 <style scoped lang="less">
     @import "../../../my-theme/custom";
-
-    .empty-result {
-        text-align: center;
-        color: #999;
-        font-size: 15px;
-        line-height: 120px;
-    }
 
     .novel {
         padding: 10px;

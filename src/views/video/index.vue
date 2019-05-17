@@ -16,9 +16,7 @@
             </li>
         </ul>
 
-        <div v-if="!videos.length" class="empty-result">
-            没有相关视频
-        </div>
+        <AppLoading :loading="!videos.length"/>
         <AppClear/>
     </AppPanel>
 </template>
@@ -58,13 +56,6 @@
     .video-list, .video-list dl, .video-list dt, .video-list dd {
         margin: 0;
         padding: 0;
-    }
-
-    .empty-result {
-        text-align: center;
-        color: #999;
-        font-size: 15px;
-        line-height: 120px;
     }
 
     .video-list {

@@ -29,7 +29,8 @@
                     </router-link>
                 </li>
             </ul>
-            <div v-if="!pageInfo.size" class="empty-result">
+            <AppLoading :loading="loading"/>
+            <div v-if="!loading && !pageInfo.size" class="empty-result">
                 没有相关文章
             </div>
             <div v-else>
@@ -61,9 +62,7 @@
                     </div>
                 </li>
             </ul>
-            <div v-if="!articles.length" class="empty-result">
-                没有相关文章
-            </div>
+            <AppLoading :loading="!articles.length"/>
         </AppPanel>
     </div>
 </template>
@@ -77,6 +76,7 @@
                 pageInfo: {
                     list: []
                 },
+                loading: true,
                 articles: []
             };
         },
@@ -124,6 +124,7 @@
                 // 加载文章列表
                 this.http.post('/article', {pageNum: pageNum, key: key}).then(res => {
                     this.pageInfo = res.data.pageInfo;
+                    this.loading = false;
                 }).catch(res => {
                     this.error(res.respMsg);
                 });
@@ -154,10 +155,11 @@
     @import "../../../my-theme/custom";
 
     .empty-result {
+        height: 150px;
         text-align: center;
         color: #999;
         font-size: 15px;
-        line-height: 120px;
+        line-height: 150px;
     }
 
     ul.tab-content {

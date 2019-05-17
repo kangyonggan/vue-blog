@@ -11,7 +11,6 @@
                 当你去教别人时，你的大脑会更有逻辑。不要吝啬于分享，在这种情况下，教别人是你最好的学习方法
             </div>
             <div class="articles">
-                <Spin size="large" fix v-if="!articles.length"></Spin>
                 <router-link :to="getArticleLink(article.articleId)" class="article" v-for="article in articles"
                              :key="article.articleId">
                     <div class="article-title">
@@ -27,6 +26,8 @@
                         查看更多
                     </router-link>
                 </div>
+
+                <AppLoading :loading="!articles.length"/>
                 <AppClear/>
             </div>
         </div>
@@ -37,7 +38,6 @@
                 寡人唯一的阅读爱好就是看小说了，本站小说源自各大网站，仅供学习交流使用
             </div>
             <div class="novels">
-                <Spin size="large" fix v-if="!novels.length"></Spin>
                 <div v-for="novel in novels" :key="novel.novelId" class="novel">
                     <router-link :to="getNovelLink(novel.novelId)">
                         <img v-if="novel.cover" :src="baseUrl + '/' + novel.cover"/>
@@ -58,6 +58,7 @@
                         查看更多
                     </router-link>
                 </div>
+                <AppLoading :loading="!novels.length"/>
                 <AppClear/>
             </div>
         </div>
@@ -184,13 +185,6 @@
             }
         }
 
-        .empty-result {
-            text-align: center;
-            color: #999;
-            font-size: 15px;
-            line-height: 120px;
-        }
-
         .title {
             color: #000;
             text-align: center;
@@ -208,8 +202,6 @@
     }
 
     .articles {
-        position: relative;
-        height: 605px;
         padding-bottom: 30px;
 
         .article:hover {
@@ -259,8 +251,6 @@
     }
 
     .novels {
-        padding-bottom: 30px;
-        position: relative;
         height: 485px;
 
         .novel:hover {

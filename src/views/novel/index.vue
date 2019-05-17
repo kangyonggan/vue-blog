@@ -2,8 +2,8 @@
     <div>
         <AppSearch :activeTab="1"/>
 
-        <AppPanel class="novels" v-if="novels.length">
-            <ul>
+        <AppPanel class="novels">
+            <ul v-if="novels.length">
                 <li v-for="novel in novels" :key="novel.novelId">
                     <router-link :to="getEncryptLink(novel.novelId)">
                         <img v-if="novel.cover" :src="baseUrl + '/' + novel.cover"/>
@@ -20,6 +20,7 @@
                     </div>
                 </li>
             </ul>
+            <AppLoading :loading="!novels.length"/>
             <AppClear/>
         </AppPanel>
 
@@ -44,9 +45,7 @@
                     <AppClear/>
                 </li>
             </ul>
-            <div v-if="!AllNovels.length" class="empty-result">
-                没有相关小说
-            </div>
+            <AppLoading :loading="!AllNovels.length"/>
             <AppClear/>
         </AppPanel>
     </div>
@@ -177,13 +176,6 @@
     .allNovels {
         margin-top: 20px;
 
-        .empty-result {
-            text-align: center;
-            color: #999;
-            font-size: 15px;
-            line-height: 120px;
-        }
-
         ul {
             list-style: none;
             padding: 0;
@@ -211,9 +203,9 @@
                     width: 550px;
                     color: #999;
                     font-size: 13px;
-                    overflow:hidden;
-                    text-overflow:ellipsis;
-                    white-space:nowrap
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap
                 }
 
                 .lastSection {
@@ -227,9 +219,9 @@
                         display: inline-block;
                         max-width: 310px;
                         color: @primary-color;
-                        overflow:hidden;
-                        text-overflow:ellipsis;
-                        white-space:nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
                     }
 
                     span {
