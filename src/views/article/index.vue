@@ -34,7 +34,7 @@
                 没有相关文章
             </div>
             <div v-else>
-                <AppPagination url="/article" :page-info="pageInfo"/>
+                <AppPagination :url="'/article?key=' + $route.query.key" :page-info="pageInfo"/>
             </div>
         </AppPanel>
 
