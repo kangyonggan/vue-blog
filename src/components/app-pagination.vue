@@ -1,28 +1,28 @@
 <template>
     <ul class="pagination" v-if="pageInfo.list && pageInfo.pages > 1">
         <li v-if="pageInfo.hasPreviousPage">
-            <router-link :to="url + '&pageNum=' + getData('1') + '&' + params" title="首页">
+            <router-link :to="url + 'pageNum=' + getData('1') + '&' + params" title="首页">
                 首
             </router-link>
         </li>
         <li v-if="pageInfo.hasPreviousPage">
-            <router-link :to="url + '&pageNum=' + getData(pageInfo.prePage) + '&' + params" title="上一页">
+            <router-link :to="url + 'pageNum=' + getData(pageInfo.prePage) + '&' + params" title="上一页">
                 上
             </router-link>
         </li>
 
         <li :class="{active: nav === pageInfo.pageNum}" v-for="nav in pageInfo.navigatepageNums" :key="nav">
             <a href="javascript:" v-if="nav === pageInfo.pageNum">{{nav}}</a>
-            <router-link v-else :to="url + '&pageNum=' + getData(nav) + '&' + params">{{nav}}</router-link>
+            <router-link v-else :to="url + 'pageNum=' + getData(nav) + '&' + params">{{nav}}</router-link>
         </li>
 
         <li v-if="pageInfo.hasNextPage">
-            <router-link :to="url + '&pageNum=' + getData(pageInfo.nextPage) + '&' + params" title="下一页">
+            <router-link :to="url + 'pageNum=' + getData(pageInfo.nextPage) + '&' + params" title="下一页">
                 下
             </router-link>
         </li>
         <li v-if="pageInfo.hasNextPage">
-            <router-link :to="url + '&pageNum=' + getData(pageInfo.pages) + '&' + params" title="尾页">
+            <router-link :to="url + 'pageNum=' + getData(pageInfo.pages) + '&' + params" title="尾页">
                 尾
             </router-link>
         </li>

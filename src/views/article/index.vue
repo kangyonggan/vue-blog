@@ -34,7 +34,7 @@
                 没有相关文章
             </div>
             <div v-else>
-                <AppPagination :url="'/article?key=' + $route.query.key" :page-info="pageInfo"/>
+                <AppPagination :url="'/article?key=' + getKey() + '&'" :page-info="pageInfo"/>
             </div>
         </AppPanel>
 
@@ -102,6 +102,10 @@
                     let endIndex = content.indexOf(')', startIndex);
                     return content.substring(startIndex + 4, endIndex);
                 }
+            },
+            getKey: function () {
+                let key = this.$route.query.key;
+                return key ? key : '';
             },
             formatIndex: function (index) {
                 index++;
