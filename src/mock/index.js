@@ -14,6 +14,7 @@ import videos from './videos';
 import video from './video';
 import indexArticles from './indexArticles';
 import indexNovels from './indexNovels';
+import preSearch from './preSearch';
 
 /**
  * 查询导航栏
@@ -27,6 +28,13 @@ Mock.mock('/navs', 'get', () => {
  */
 Mock.mock('/article', 'post', () => {
     return articles;
+});
+
+/**
+ * 预搜索文章
+ */
+Mock.mock('/article/preSearch', 'post', () => {
+    return preSearch;
 });
 
 /**
@@ -48,6 +56,13 @@ Mock.mock('/article/detail', 'post', () => {
  */
 Mock.mock('/novel', 'post', () => {
     return novels;
+});
+
+/**
+ * 预搜索小说
+ */
+Mock.mock('/novel/preSearch', 'post', () => {
+    return preSearch;
 });
 
 /**

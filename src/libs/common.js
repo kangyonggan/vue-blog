@@ -84,3 +84,25 @@ Date.prototype.format = function (fmt) {
     }
     return fmt;
 };
+
+/**
+ * 防抖
+ *
+ * @param fn
+ * @param delay 默认500毫秒
+ * @returns {Function}
+ */
+function debounce(fn, delay = 500) {
+    let timer;
+    return function () {
+        let args = arguments;
+        if (timer) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+            fn.apply(this, args);
+        }, delay);
+    };
+}
+
+export {debounce};

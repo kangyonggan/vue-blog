@@ -1,5 +1,5 @@
 <template>
-    <div v-if="loading" class="loading">
+    <div v-if="loading" class="loading" :style="'height:' + height + 'px'">
         <Spin size="large" fix></Spin>
     </div>
 </template>
@@ -12,6 +12,10 @@
             loading: {
                 required: true,
                 type: Boolean
+            },
+            height: {
+                type: Number,
+                default: 260
             }
         }
     };
@@ -23,7 +27,6 @@
 
 <style scoped lang="less">
     .loading {
-        height: 260px;
         position: relative;
     }
 </style>

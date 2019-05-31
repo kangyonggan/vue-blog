@@ -2,8 +2,8 @@
     <div>
         <AppSearch :activeTab="1"/>
 
-        <AppPanel class="novels">
-            <ul v-if="novels.length">
+        <AppPanel class="novels" v-if="novels.length">
+            <ul>
                 <li v-for="novel in novels" :key="novel.novelId">
                     <router-link :to="getEncryptLink(novel.novelId)">
                         <img v-if="novel.cover" :src="novel.cover"/>
@@ -103,11 +103,21 @@
         mounted() {
             this.init();
 
-            this.loadNewNovels();
+            let key = this.$route.query.key;
+            if (!key) {
+                this.loadNewNovels();
+            }
         },
         watch: {
             '$route'() {
                 this.init();
+
+                let key = this.$route.query.key;
+                if (key) {
+                    this.novels = [];
+                } else {
+                    this.loadNewNovels();
+                }
             }
         }
     };
