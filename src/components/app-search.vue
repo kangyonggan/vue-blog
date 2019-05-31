@@ -274,6 +274,7 @@
         img {
             position: absolute;
             top: -15px;
+            z-index: 1000;
         }
 
         .preResult {
@@ -285,7 +286,7 @@
         .input {
             position: relative;
             width: 960px;
-            height: 40px;
+            height: 45px;
             border: 2px solid #dedede;
             border-radius: 5px;
             background: #fff;
@@ -293,7 +294,7 @@
             .tips {
                 position: absolute;
                 left: -2px;
-                top: 38px;
+                top: 43px;
                 right: -2px;
                 padding: 10px 20px 20px 20px;
                 box-sizing: border-box;
@@ -301,7 +302,7 @@
                 border-top: 0;
                 background: #fff;
                 z-index: 999;
-                max-height: 420px;
+                max-height: 450px;
                 overflow: scroll;
 
                 .empty-result {
@@ -344,7 +345,7 @@
             input {
                 outline: none;
                 width: 820px;
-                height: 35px;
+                height: 41px;
                 border: none;
                 float: left;
                 color: #595959;
@@ -357,7 +358,7 @@
 
             .input-append {
                 float: left;
-                line-height: 36px;
+                line-height: 45px;
 
                 span {
                     color: #999;
