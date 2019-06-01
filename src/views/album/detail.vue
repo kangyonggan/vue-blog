@@ -9,9 +9,6 @@
                         <dd>
                             <img :src="baseUrl + '/' + photo.thumb" :data-origin="baseUrl + '/' + photo.url"/>
                         </dd>
-                        <dt>
-                            {{dateFormat(photo.createdTime, 'yyyy-MM-dd')}}
-                        </dt>
                     </dl>
                 </li>
             </ul>
