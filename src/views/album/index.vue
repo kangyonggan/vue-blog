@@ -5,7 +5,7 @@
                 <dl>
                     <dd>
                         <router-link :to="getEncryptLink(album.albumId)"
-                           :style="'background-image: url(' + baseUrl + '/' + album.cover + ')'"></router-link>
+                           :style="'background-image: url(' + album.cover + ')'"></router-link>
                         <div class="size">{{album.size}}</div>
                     </dd>
                     <dt>
