@@ -303,7 +303,6 @@
                 background: #fff;
                 z-index: 999;
                 max-height: 450px;
-                overflow: scroll;
 
                 .empty-result {
                     height: 150px;
