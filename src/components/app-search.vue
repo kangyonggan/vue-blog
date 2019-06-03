@@ -20,14 +20,14 @@
                     <div class="tips" v-show="showTips">
                         <ul v-if="currIndex===0">
                             <li :class="{active: cursorIndex===index}" v-for="(item, index) in preList"
-                                :key="index" @click="selectPreItem($event, item)">{{item}}</li>
+                                :key="index" @click="selectPreItem($event, item)" v-html="formatResultKey(item)"></li>
                             <AppLoading :loading="isSearching" :height="150"/>
                         </ul>
                         <ul v-if="currIndex===1">
                             <li :class="{active: cursorIndex===index}" v-for="(item, index) in preList"
                                 :key="index" @click="selectPreItem($event, item.name)">
-                                <span>{{item.name}}</span>
-                                <span class="pre-author">{{item.author}}</span>
+                                <div class="pre-name" v-html="formatResultKey(item.name)">{{item.name}}</div>
+                                <div class="pre-author" v-html="formatResultKey(item.author)"></div>
                             </li>
                             <AppLoading :loading="isSearching" :height="150"/>
                         </ul>
@@ -114,6 +114,13 @@
             }
         },
         methods: {
+            formatResultKey: function (text) {
+                let index = text.toLowerCase().indexOf(this.key.toLowerCase());
+                if (index === -1) {
+                    return text;
+                }
+                return text.substring(0, index) + '<span style="color: #8c0776">' + text.substring(index, index + this.key.length) + '</span>' + text.substring(index + this.key.length);
+            },
             /**
              * 点击Tab页
              *
@@ -319,6 +326,10 @@
                     font-size: 14px;
                     color: #888;
                     cursor: pointer;
+
+                    .pre-name {
+                        float: left;
+                    }
 
                     .pre-author {
                         float: right;
