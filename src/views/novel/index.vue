@@ -77,15 +77,8 @@
                 return url;
             },
             init: function () {
-                let key = this.$route.query.key;
-                if (key) {
-                    key = Util.decryptUrl(key);
-                } else {
-                    key = '';
-                }
-
                 // 加载小说列表
-                this.http.post('/novel', {key: key}).then(res => {
+                this.http.post('/novel').then(res => {
                     this.AllNovels = res.data.novels;
                 }).catch(res => {
                     this.error(res.respMsg);
@@ -102,23 +95,7 @@
         },
         mounted() {
             this.init();
-
-            let key = this.$route.query.key;
-            if (!key) {
-                this.loadNewNovels();
-            }
-        },
-        watch: {
-            '$route'() {
-                this.init();
-
-                let key = this.$route.query.key;
-                if (key) {
-                    this.novels = [];
-                } else {
-                    this.loadNewNovels();
-                }
-            }
+            this.loadNewNovels();
         }
     };
 </script>

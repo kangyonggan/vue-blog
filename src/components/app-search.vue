@@ -12,20 +12,17 @@
                 <div class="input" :class="{preResult: showTips}">
                     <Icon type="ios-search" size="28" color="#bdc4d5"/>
                     <input name="key" v-model="key" autocomplete='off' :placeholder="placeholder" @keyup.enter="search"
-                           @input="preSearch" @keydown="keydown"/>
-                    <div class="input-append">
-                        <span>|</span>
-                        <a href="javascript:" @click="search">搜 索</a>
-                    </div>
+                           @input="preSearch" @keydown="keydown" @click="clickInput"/>
                     <div class="tips" v-show="showTips">
                         <ul v-if="currIndex===0">
                             <li :class="{active: cursorIndex===index}" v-for="(item, index) in preList"
-                                :key="index" @click="selectPreItem($event, item)" v-html="formatResultKey(item)"></li>
+                                :key="index" @click="selectPreItem($event, item)"
+                                v-html="formatResultKey(item.title)"></li>
                             <AppLoading :loading="isSearching" :height="150"/>
                         </ul>
                         <ul v-if="currIndex===1">
                             <li :class="{active: cursorIndex===index}" v-for="(item, index) in preList"
-                                :key="index" @click="selectPreItem($event, item.name)">
+                                :key="index" @click="selectPreItem($event, item)">
                                 <div class="pre-name" v-html="formatResultKey(item.name)">{{item.name}}</div>
                                 <div class="pre-author" v-html="formatResultKey(item.author)"></div>
                             </li>
@@ -68,6 +65,7 @@
                 currIndex: 0,
                 placeholder: '请输入需要查找的文章标题，支持模糊搜索',
                 key: '',
+                keyId: 0,
                 preList: [],
                 isSearching: false,
                 showTips: false,
@@ -85,33 +83,13 @@
                 this.placeholder = '请输入需要查找的小说名称或作者，支持模糊搜索';
             }
 
-            let key = this.$route.query.key;
-            if (key) {
-                key = Util.decryptUrl(key);
-            } else {
-                key = '';
-            }
-            this.key = key;
-
             let that = this;
             // 点击空白区域关闭
             document.onclick = function (e) {
                 if (e.target.getAttribute('name') !== 'key') {
                     that.showTips = false;
                 }
-            }
-        },
-        watch: {
-            '$route'() {
-                this.showTips = false;
-                let key = this.$route.query.key;
-                if (key) {
-                    key = Util.decryptUrl(key);
-                } else {
-                    key = '';
-                }
-                this.key = key;
-            }
+            };
         },
         methods: {
             formatResultKey: function (text) {
@@ -129,6 +107,7 @@
             clickTab: function (e) {
                 this.showTips = false;
                 this.key = '';
+                this.keyId = 0;
                 let parent = e.target.parentNode;
 
                 let currIndex = 0;
@@ -150,23 +129,25 @@
                 this.currIndex = currIndex;
             },
             search: function () {
+                if (!this.keyId) {
+                    return;
+                }
                 this.showTips = false;
                 if (this.currIndex === 0) {
                     // 搜索文章
                     this.$router.push({
-                        path: '/article',
-                        query: {
-                            key: Util.encryptUrlSimple(this.key)
-                        }
+                        path: '/article/' + Util.encryptUrl(this.keyId)
                     });
                 } else {
                     // 搜索小说
                     this.$router.push({
-                        path: '/novel',
-                        query: {
-                            key: Util.encryptUrlSimple(this.key)
-                        }
+                        path: '/novel/' + Util.encryptUrl(this.keyId),
                     });
+                }
+            },
+            clickInput: function () {
+                if (!this.showTips && this.preList.length) {
+                    this.showTips = true;
                 }
             },
             preSearch: debounce(function (e) {
@@ -198,15 +179,20 @@
                     this.showTips = false;
                 }
             }),
-            selectPreItem: function (e, val) {
+            selectPreItem: function (e, item) {
                 if (this.currIndex === 0) {
-                    this.key = val;
+                    this.key = item.title;
+                    this.keyId = item.articleId;
                 } else {
-                    this.key = val;
+                    this.key = item.name;
+                    this.keyId = item.novelId;
                 }
                 this.showTips = false;
+
+                this.search();
             },
             keydown: function (e) {
+                this.keyId = 0;
                 if (this.showTips) {
                     if (e.keyCode === 38) {
                         // 上
@@ -222,11 +208,13 @@
                         }
                     }
 
-                    if (this.cursorIndex >= 0) {
+                    if (this.cursorIndex >= 0 && this.preList.length > this.cursorIndex) {
                         if (this.currIndex === 0) {
-                            this.key = this.preList[this.cursorIndex];
+                            this.key = this.preList[this.cursorIndex].title;
+                            this.keyId = this.preList[this.cursorIndex].articleId;
                         } else {
                             this.key = this.preList[this.cursorIndex].name;
+                            this.keyId = this.preList[this.cursorIndex].novelId;
                         }
                     }
                 }
@@ -364,20 +352,6 @@
             input::-webkit-input-placeholder {
                 font-size: 13px;
                 color: #999;
-            }
-
-            .input-append {
-                float: left;
-                line-height: 45px;
-
-                span {
-                    color: #999;
-                }
-
-                a {
-                    color: @primary-color;
-                    margin-left: 13px;
-                }
             }
         }
     }

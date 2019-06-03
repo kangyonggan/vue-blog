@@ -34,7 +34,7 @@
                 没有相关文章
             </div>
             <div v-else>
-                <AppPagination :url="'/article?key=' + getKey() + '&'" :page-info="pageInfo"/>
+                <AppPagination :url="'/article?'" :page-info="pageInfo"/>
             </div>
         </AppPanel>
 
@@ -103,10 +103,6 @@
                     return content.substring(startIndex + 4, endIndex);
                 }
             },
-            getKey: function () {
-                let key = this.$route.query.key;
-                return key ? key : '';
-            },
             formatIndex: function (index) {
                 index++;
                 return index < 10 ? '0' + index : index;
@@ -118,15 +114,9 @@
                 } else {
                     pageNum = 1;
                 }
-                let key = this.$route.query.key;
-                if (key) {
-                    key = Util.decryptUrl(key);
-                } else {
-                    key = '';
-                }
 
                 // 加载文章列表
-                this.http.post('/article', {pageNum: pageNum, key: key}).then(res => {
+                this.http.post('/article', {pageNum: pageNum,}).then(res => {
                     this.pageInfo = res.data.pageInfo;
                     this.loading = false;
                 }).catch(res => {
