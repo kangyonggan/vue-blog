@@ -11,6 +11,8 @@
                     {{nav.value}}
                 </router-link>
             </div>
+
+            <a target="_blank" href="http://kangyonggan.com:8888" style="float: right;line-height: 80px;">后管</a>
         </div>
     </div>
 </template>
