@@ -348,7 +348,7 @@
             }
 
             i {
-                margin: 5px 15px 0 20px;
+                margin: 8px 15px 0 20px;
                 float: left;
             }
 
