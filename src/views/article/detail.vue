@@ -2,10 +2,40 @@
     <div>
         <AppBreadcrumb :list="breadcrumbs"/>
 
+
         <AppPanel class="detail">
             <div class="title">{{article.title}}</div>
 
             <AppLoading :loading="!article.title"/>
+
+            <div class="toc" v-if="article.title">
+                <ul v-show="expand">
+                    <li v-for="toc in tocs">
+                        <a :href="'#' + toc.link">{{toc.name}}</a>
+                        <ul v-if="toc.children.length">
+                            <li v-for="tocSec in toc.children">
+                                <a :href="'#' + tocSec.link">{{tocSec.name}}</a>
+                                <ul v-if="tocSec.children.length">
+                                    <li v-for="tocThr in tocSec.children">
+                                        <a :href="'#' + tocThr.link">{{tocThr.name}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <AppClear :height="10"/>
+                <a @click="expand = !expand" v-show="!expand">
+                    查看目录
+                    <Icon type="ios-arrow-down"/>
+                </a>
+                <a @click="expand = !expand" v-show="expand">
+                    收起目录
+                    <Icon type="ios-arrow-up"/>
+                </a>
+                <AppClear :height="10"/>
+            </div>
 
             <div id="markdown-content" v-html="compiledMarkdown"></div>
 
@@ -16,7 +46,8 @@
 
 <script>
     import Util from '@/libs/util';
-    import $ from "jquery";
+    import $ from 'jquery';
+
     window.jQuery = $;
     require('../../libs/zoomer.js');
 
@@ -32,13 +63,16 @@
                     name: ''
                 }],
                 loading: true,
-                article: {}
+                article: {},
+                expand: false,
+                tocs: []
             };
         },
         methods: {
             init: function () {
                 this.http.post('/article/detail', {'articleId': Util.decrypt(this.$route.params.articleId)}).then(res => {
                     this.article = res.data.article;
+                    this.tocs = res.data.tocs;
                     Util.title(this.article.title);
                     this.breadcrumbs[1].name = this.article.title;
 
@@ -60,9 +94,9 @@
 
                 this.$nextTick(() => {
                     let allLinks = document.getElementById('markdown-content').querySelectorAll('a');
-                    allLinks.forEach((e) => {
+                    allLinks.forEach(e => {
                         e.setAttribute('target', '_blank');
-                    })
+                    });
                 });
 
                 return html;
@@ -100,12 +134,12 @@
 
         ul {
             list-style: disc;
-            padding-left: 55px;
+            padding-left: 40px;
         }
 
         ol {
             list-style: decimal;
-            padding-left: 55px;
+            padding-left: 40px;
         }
 
         ul li, ol li {
@@ -171,6 +205,17 @@
         line-height: 1.389;
         font-weight: 700;
         color: #262626;
+    }
+
+    .toc {
+        border-bottom: 1px dashed #ddd;
+        padding: 0 100px;
+        text-align: center;
+
+        ul {
+            text-align: left;
+            list-style: none;
+        }
     }
 
 </style>
