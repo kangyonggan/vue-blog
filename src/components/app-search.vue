@@ -108,6 +108,7 @@
                 this.showTips = false;
                 this.key = '';
                 this.keyId = 0;
+                this.preList = [];
                 let parent = e.target.parentNode;
 
                 let currIndex = 0;
@@ -146,7 +147,7 @@
                 }
             },
             clickInput: function () {
-                if (!this.showTips && this.preList.length) {
+                if (!this.showTips && this.key) {
                     this.showTips = true;
                 }
             },
