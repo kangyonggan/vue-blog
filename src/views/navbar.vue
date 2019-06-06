@@ -10,9 +10,12 @@
                              :to="nav.dictCode" :class="isActive(nav.dictCode)?'active':''">
                     {{nav.value}}
                 </router-link>
+                <router-link to="404" :class="isActive('/404')?'active':''">
+                    404
+                </router-link>
             </div>
 
-            <a target="_blank" href="http://kangyonggan.com:8888" style="float: right;line-height: 80px;">后管</a>
+            <a target="_blank" href="http://kangyonggan.com:8888" style="float: right;line-height: 80px;">登录</a>
         </div>
     </div>
 </template>

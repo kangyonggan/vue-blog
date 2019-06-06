@@ -78,6 +78,20 @@ const routers = [{
             },
             component: (resolve) => require(['./views/video/detail.vue'], resolve)
         }, {
+            path: 'tools',
+            name: 'tools',
+            meta: {
+                title: '工具'
+            },
+            component: (resolve) => require(['./views/tools/index.vue'], resolve)
+        }, {
+            path: 'tools/json',
+            name: 'toolsJson',
+            meta: {
+                title: 'JSON格式化'
+            },
+            component: (resolve) => require(['./views/tools/toolsJson.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {
