@@ -14,6 +14,13 @@
                 <Starts :length="4" :size="15"/>
             </div>
         </li>
+        <li class="no-border">
+            <span class="index">3</span>
+            <div class="right">
+                <router-link to="/tools/sql">XML格式化</router-link>
+                <Starts :length="4" :size="15"/>
+            </div>
+        </li>
     </ul>
 </template>
 

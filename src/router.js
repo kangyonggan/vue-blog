@@ -99,6 +99,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/tools/toolsSQL.vue'], resolve)
         }, {
+            path: 'tools/xml',
+            name: 'toolsXml',
+            meta: {
+                title: 'XML格式化'
+            },
+            component: (resolve) => require(['./views/tools/toolsXml.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {

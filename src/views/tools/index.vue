@@ -27,6 +27,19 @@
                     </dl>
                 </router-link>
             </li>
+            <li>
+                <router-link to="/tools/xml">
+                    <dl>
+                        <dd>
+                            <img src="/static/images/tools/xml.png"/>
+                        </dd>
+                        <dt>
+                            <Stars :length="4" class="stars"/>
+                            XML格式化
+                        </dt>
+                    </dl>
+                </router-link>
+            </li>
         </ul>
 
         <AppClear/>
