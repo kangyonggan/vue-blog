@@ -92,6 +92,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/tools/toolsJson.vue'], resolve)
         }, {
+            path: 'tools/sql',
+            name: 'toolsSQL',
+            meta: {
+                title: 'SQL格式化'
+            },
+            component: (resolve) => require(['./views/tools/toolsSQL.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {

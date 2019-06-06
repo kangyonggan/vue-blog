@@ -14,6 +14,19 @@
                     </dl>
                 </router-link>
             </li>
+            <li>
+                <router-link to="/tools/sql">
+                    <dl>
+                        <dd>
+                            <img src="/static/images/tools/sql.png"/>
+                        </dd>
+                        <dt>
+                            <Stars :length="4" class="stars"/>
+                            SQL格式化
+                        </dt>
+                    </dl>
+                </router-link>
+            </li>
         </ul>
 
         <AppClear/>
