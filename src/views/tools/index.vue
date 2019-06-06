@@ -40,6 +40,19 @@
                     </dl>
                 </router-link>
             </li>
+            <li>
+                <router-link to="/tools/thumb">
+                    <dl>
+                        <dd>
+                            <img src="/static/images/tools/thumb.png"/>
+                        </dd>
+                        <dt>
+                            <Stars :length="4" class="stars"/>
+                            生成缩略图
+                        </dt>
+                    </dl>
+                </router-link>
+            </li>
         </ul>
 
         <AppClear/>

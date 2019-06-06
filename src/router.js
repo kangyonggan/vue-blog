@@ -106,6 +106,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/tools/toolsXml.vue'], resolve)
         }, {
+            path: 'tools/thumb',
+            name: 'toolsThumb',
+            meta: {
+                title: '生成缩略图'
+            },
+            component: (resolve) => require(['./views/tools/toolsThumb.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {
