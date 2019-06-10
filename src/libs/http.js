@@ -27,7 +27,7 @@ class HttpRequest {
             config.headers[Util.tokenKey] = Util.token();
             // 在发送请求之前做些什么
 
-            if (config.data) {
+            if (config.type !== 'upload' && config.data) {
                 config.data = Util.encrypt(config.data);
             }
 
