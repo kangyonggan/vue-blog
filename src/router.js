@@ -113,6 +113,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/tools/toolsThumb.vue'], resolve)
         }, {
+            path: 'game',
+            name: 'game',
+            meta: {
+                title: '游戏'
+            },
+            component: (resolve) => require(['./views/game/index.vue'], resolve)
+        }, {
             path: '*',
             name: '404',
             meta: {
