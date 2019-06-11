@@ -10,7 +10,7 @@
                              :to="nav.dictCode" :class="isActive(nav.dictCode)?'active':''">
                     {{nav.value}}
                 </router-link>
-                <router-link to="404" :class="isActive('/404')?'active':''">
+                <router-link to="/404" :class="isActive('/404')?'active':''">
                     404
                 </router-link>
             </div>
