@@ -4,7 +4,7 @@
             <input type="number" v-model="num" placeholder="请输入4位不重复的数字"/>
 
             <Button @click="guess" :disabled="!isNum">猜一次({{times}})</Button>
-            <Button @click="giveUp" :disabled="isGameOver">放弃本局</Button>
+            <Button @click="gameOver" :disabled="isGameOver">放弃本局</Button>
             <Button @click="reset">重新开局</Button>
         </div>
         <div class="error" v-show="errMsg">{{errMsg}}</div>
@@ -107,15 +107,6 @@
                 }
             },
             /**
-             * 放弃本局
-             */
-            giveUp: function () {
-                if (this.times === 8) {
-                    this.data = [];
-                }
-                this.gameOver();
-            },
-            /**
              * 游戏结束
              */
             gameOver: function () {
@@ -191,7 +182,7 @@
              * @returns {boolean}
              */
             isNum: function () {
-                if (this.num === '') {
+                if (this.num === '' || this.isGameOver) {
                     this.errMsg = '';
                     return false;
                 }
