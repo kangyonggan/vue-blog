@@ -33,4 +33,9 @@ export default [{
     name: '生成身份证',
     icon: '/static/images/tools/idNoGen.png',
     stars: 5
+}, {
+    url: '/tools/gif',
+    name: '制作Gif',
+    icon: '/static/images/tools/gif.png',
+    stars: 5
 }];

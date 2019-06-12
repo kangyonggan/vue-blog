@@ -36,6 +36,8 @@
 
 <style scoped lang="less">
     .tool-list {
+        list-style: none;
+
         li {
             float: left;
             border: 1px solid #ccc;

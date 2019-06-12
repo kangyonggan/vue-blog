@@ -202,7 +202,7 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../../my-theme/custom";
+    @primary-color: #2d8cf0;
 
     input[type=number] {
         width: 220px;

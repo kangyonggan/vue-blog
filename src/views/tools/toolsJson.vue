@@ -52,15 +52,3 @@
     };
 </script>
 
-<style lang="less">
-    @import "../../../my-theme/custom";
-
-    div.jsoneditor-menu {
-        background-color: @primary-color !important;
-        border-bottom: 1px solid @primary-color !important;
-    }
-
-    div.jsoneditor {
-        border: thin solid @primary-color !important;
-    }
-</style>

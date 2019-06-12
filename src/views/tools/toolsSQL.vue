@@ -41,7 +41,7 @@
 </script>
 
 <style lang="less">
-    @import "../../../my-theme/custom";
+    @primary-color: #2d8cf0;
 
     .toolbar {
         height: 35px;

@@ -25,8 +25,6 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../../my-theme/custom";
-
     ul.all-tools {
         list-style: none;
         margin: 0;
@@ -65,10 +63,10 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
+                    color: #595959;
                 }
 
                 i {
-                    color: @primary-color;
                     float: right;
                     margin-top: 12px;
                 }

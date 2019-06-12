@@ -165,7 +165,7 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../my-theme/custom";
+    @primary-color: #2d8cf0;
 
     .block {
         margin-bottom: 30px;
@@ -246,6 +246,7 @@
                 margin-top: 5px;
                 padding: 15px;
                 line-height: 2;
+                color: #595959;
             }
         }
     }

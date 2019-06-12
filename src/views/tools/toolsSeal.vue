@@ -87,7 +87,7 @@
 </script>
 
 <style lang="less" scoped>
-    @import "../../../my-theme/custom";
+    @primary-color: #2d8cf0;
 
     .warning {
         font-size: 12px;

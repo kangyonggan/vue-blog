@@ -134,6 +134,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/tools/toolsIdNoGen.vue'], resolve)
         }, {
+            path: 'tools/gif',
+            name: 'toolsGif',
+            meta: {
+                title: '制作GIF'
+            },
+            component: (resolve) => require(['./views/tools/toolsGif.vue'], resolve)
+        }, {
             path: 'game',
             name: 'game',
             meta: {

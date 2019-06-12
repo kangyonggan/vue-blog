@@ -146,7 +146,7 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../../my-theme/custom";
+    @primary-color: #2d8cf0;
 
     .empty-result {
         height: 150px;
@@ -291,6 +291,7 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
+                    color: #595959;
                 }
 
                 .info {

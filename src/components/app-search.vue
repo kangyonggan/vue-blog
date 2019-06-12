@@ -97,7 +97,7 @@
                 if (index === -1) {
                     return text;
                 }
-                return text.substring(0, index) + '<span style="color: #8c0776">' + text.substring(index, index + this.key.length) + '</span>' + text.substring(index + this.key.length);
+                return text.substring(0, index) + '<span style="color: #2d8cf0">' + text.substring(index, index + this.key.length) + '</span>' + text.substring(index + this.key.length);
             },
             /**
              * 点击Tab页
@@ -231,7 +231,7 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../my-theme/custom";
+    @primary-color: #2d8cf0;
 
     .search {
         width: 1000px;

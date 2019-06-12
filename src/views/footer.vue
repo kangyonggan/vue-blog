@@ -75,8 +75,6 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../my-theme/custom";
-
     .footer {
         height: 360px;
         background: #fff;
@@ -106,7 +104,7 @@
                     color: #333;
                     padding: 5px;
                     display: inline-block;
-                    border-bottom: 2px solid @primary-color;
+                    border-bottom: 2px solid #2d8cf0;
                 }
 
                 ul {
@@ -127,7 +125,6 @@
 
                     li a:hover {
                         text-decoration: underline;
-                        text-decoration-color: @primary-color;
                     }
                 }
             }

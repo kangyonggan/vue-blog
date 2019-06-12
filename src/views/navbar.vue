@@ -55,8 +55,6 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../my-theme/custom";
-
     .navbar {
         height: 80px;
         background: #fff;
@@ -82,15 +80,16 @@
                 float: left;
                 padding: 10px;
                 text-align: center;
+                color: #595959;
             }
         }
 
         .navList a.active {
-            border-bottom: 2px solid @primary-color;
+            border-bottom: 2px solid #2d8cf0;
         }
 
         .navList a:hover {
-            border-bottom: 2px solid @primary-color;
+            border-bottom: 2px solid #2d8cf0;
         }
     }
 </style>

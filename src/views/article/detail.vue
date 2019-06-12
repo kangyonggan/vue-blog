@@ -108,8 +108,8 @@
     };
 </script>
 
-<style lang="less">
-    @import "../../../my-theme/custom";
+<style lang="less" scoped>
+    @primary-color: #2d8cf0;
 
     .detail {
         clear: both;
