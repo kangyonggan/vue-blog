@@ -120,6 +120,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/tools/toolsIdNoQry.vue'], resolve)
         }, {
+            path: 'tools/seal',
+            name: 'toolsSeal',
+            meta: {
+                title: '电子印章'
+            },
+            component: (resolve) => require(['./views/tools/toolsSeal.vue'], resolve)
+        }, {
             path: 'game',
             name: 'game',
             meta: {

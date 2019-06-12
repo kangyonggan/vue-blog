@@ -1,38 +1,10 @@
 <template>
     <ul class="all-tools">
-        <li>
-            <span class="index">1</span>
+        <li v-for="(item, index) in tools" :key="index">
+            <span class="index">{{index + 1}}</span>
             <div class="right">
-                <router-link to="/tools/json">JSON格式化</router-link>
-                <Starts :length="5" :size="15"/>
-            </div>
-        </li>
-        <li class="no-border">
-            <span class="index">2</span>
-            <div class="right">
-                <router-link to="/tools/sql">SQL格式化</router-link>
-                <Starts :length="4" :size="15"/>
-            </div>
-        </li>
-        <li class="no-border">
-            <span class="index">3</span>
-            <div class="right">
-                <router-link to="/tools/xml">XML格式化</router-link>
-                <Starts :length="4" :size="15"/>
-            </div>
-        </li>
-        <li class="no-border">
-            <span class="index">4</span>
-            <div class="right">
-                <router-link to="/tools/thumb">生成缩略图</router-link>
-                <Starts :length="5" :size="15"/>
-            </div>
-        </li>
-        <li class="no-border">
-            <span class="index">5</span>
-            <div class="right">
-                <router-link to="/tools/idNoQry">身份证查询</router-link>
-                <Starts :length="5" :size="15"/>
+                <router-link :to="item.url">{{item.name}}</router-link>
+                <Starts :length="item.stars" :size="15"/>
             </div>
         </li>
     </ul>
@@ -40,9 +12,15 @@
 
 <script>
     import Starts from './Stars';
+    import tools from './tools';
 
     export default {
-        components: {Starts}
+        components: {Starts},
+        data() {
+            return {
+                tools: tools
+            };
+        }
     };
 </script>
 
