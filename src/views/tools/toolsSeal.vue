@@ -13,13 +13,14 @@
                 </FormItem>
             </Form>
 
-            <div class="result">
+            <div class="result" v-if="result.length">
                 <dl v-for="item in result" :key="item[0]">
                     <dd>
                         <img :src="baseUrl + '/' + item[0]"/>
                     </dd>
                     <dt>{{item[1]}}</dt>
                 </dl>
+                <div class="warning">仅供学习使用，违法自负！</div>
             </div>
         </AppPanel>
 
@@ -87,6 +88,14 @@
 
 <style lang="less" scoped>
     @import "../../../my-theme/custom";
+
+    .warning {
+        font-size: 12px;
+        margin-top: 5px;
+        color: @primary-color;
+        text-align: center;
+        line-height: 50px;
+    }
 
     .form {
         width: 500px;

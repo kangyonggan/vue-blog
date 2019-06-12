@@ -127,6 +127,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/tools/toolsSeal.vue'], resolve)
         }, {
+            path: 'tools/idNoGen',
+            name: 'toolsIdNoGen',
+            meta: {
+                title: '生成身份证'
+            },
+            component: (resolve) => require(['./views/tools/toolsIdNoGen.vue'], resolve)
+        }, {
             path: 'game',
             name: 'game',
             meta: {

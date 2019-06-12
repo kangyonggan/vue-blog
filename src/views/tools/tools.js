@@ -28,4 +28,9 @@ export default [{
     name: '电子印章',
     icon: '/static/images/tools/seal.png',
     stars: 5
+}, {
+    url: '/tools/idNoGen',
+    name: '生成身份证',
+    icon: '/static/images/tools/idNoGen.png',
+    stars: 5
 }];

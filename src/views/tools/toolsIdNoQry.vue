@@ -42,6 +42,7 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="warning">仅供学习使用，违法自负！</div>
             </div>
         </AppPanel>
 
@@ -83,7 +84,7 @@
                     return;
                 }
 
-                this.http.post('/validate/idNo', {idNo: value}).then(() => {
+                this.http.post('/api/validate/idNo', {idNo: value}).then(() => {
                     callback();
                 }).catch(res => {
                     callback(new Error(res.respMsg));
@@ -107,6 +108,14 @@
 
 <style lang="less" scoped>
     @import "../../../my-theme/custom";
+
+    .warning {
+        font-size: 12px;
+        margin-top: 5px;
+        color: @primary-color;
+        text-align: center;
+        line-height: 50px;
+    }
 
     .form {
         width: 500px;
