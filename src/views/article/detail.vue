@@ -108,7 +108,7 @@
     };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
     @primary-color: #2d8cf0;
 
     .detail {

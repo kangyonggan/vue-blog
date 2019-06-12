@@ -43,7 +43,7 @@
     };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
     .video {
         background: #fff;
         width: 1024px;
