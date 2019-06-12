@@ -105,7 +105,7 @@
     };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
     @import "../../../my-theme/custom";
 
     .form {
