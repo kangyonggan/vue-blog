@@ -113,6 +113,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/tools/toolsThumb.vue'], resolve)
         }, {
+            path: 'tools/idNoQry',
+            name: 'toolsIdNoQry',
+            meta: {
+                title: '身份证查询'
+            },
+            component: (resolve) => require(['./views/tools/toolsIdNoQry.vue'], resolve)
+        }, {
             path: 'game',
             name: 'game',
             meta: {

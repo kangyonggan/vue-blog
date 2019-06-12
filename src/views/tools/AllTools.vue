@@ -25,7 +25,14 @@
             <span class="index">4</span>
             <div class="right">
                 <router-link to="/tools/thumb">生成缩略图</router-link>
-                <Starts :length="4" :size="15"/>
+                <Starts :length="5" :size="15"/>
+            </div>
+        </li>
+        <li class="no-border">
+            <span class="index">5</span>
+            <div class="right">
+                <router-link to="/tools/idNoQry">身份证查询</router-link>
+                <Starts :length="5" :size="15"/>
             </div>
         </li>
     </ul>

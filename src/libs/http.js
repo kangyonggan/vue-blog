@@ -75,8 +75,8 @@ class HttpRequest {
         return instance(options);
     }
 
-    // http请求实例
-    http(method, url, data) {
+    // ajax请求实例
+    ajax(method, url, data) {
         let options = {
             url: url,
             data,
