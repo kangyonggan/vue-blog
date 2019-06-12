@@ -5,7 +5,7 @@
         <AppPanel :width="800" float="left">
             <Form ref="form" :model="formItem" class="form" :rules="ruleValidate">
                 <FormItem label="身份证号码（支持15位或18位身份证号码查询）" prop="idNo">
-                    <Input v-model="formItem.idNo" placeholder="请输入身份证号码..."></Input>
+                    <Input v-model="formItem.idNo" placeholder="请输入身份证号码..." :clearable="true"></Input>
                 </FormItem>
 
                 <FormItem>
