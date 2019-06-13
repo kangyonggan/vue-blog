@@ -300,6 +300,10 @@
                 z-index: 999;
                 max-height: 450px;
 
+                ul {
+                    list-style: none;
+                }
+
                 .empty-result {
                     height: 150px;
                     text-align: center;
