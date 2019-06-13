@@ -59,7 +59,7 @@
             </div>
             <div class="footer-bottom">
                 Copyright © 2015-2019. 皖ICP备18009089号.
-                <a href="https://blog.kangyonggan.com/atom.xml" target="_blank" class="social-links">
+                <a href="https://kangyonggan.com/web/upload/rss.xml" target="_blank" class="social-links">
                     <Icon type="social-rss-outline" size="20"/>
                 </a>
                 <a href="https://github.com/kangyonggan/" target="_blank" class="social-links">
