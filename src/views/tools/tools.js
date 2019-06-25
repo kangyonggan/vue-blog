@@ -38,4 +38,9 @@ export default [{
     name: '制作Gif',
     icon: '/static/images/tools/gif.png',
     stars: 5
+}, {
+    url: '/tools/img',
+    name: '图片解析',
+    icon: '/static/images/tools/img.png',
+    stars: 5
 }];
