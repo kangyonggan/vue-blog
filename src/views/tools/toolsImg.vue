@@ -33,10 +33,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="first">图片名称</td>
-                        <td>{{result.name}}</td>
-                    </tr>
-                    <tr>
                         <td class="first">图片大小</td>
                         <td>
                             <span v-show="result.size">
@@ -128,7 +124,6 @@
                 this.result = {};
                 this.http.postUpload('/tools/parseImg', formData).then(res => {
                     this.result = res.data.resultMap;
-                    console.log(this.result);
                 }).catch(res => {
                     this.error(res.respMsg);
                 });
