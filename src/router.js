@@ -148,6 +148,13 @@ const routers = [{
             },
             component: (resolve) => require(['./views/tools/toolsImg.vue'], resolve)
         }, {
+            path: 'tools/bazi',
+            name: 'toolsBazi',
+            meta: {
+                title: '五行、八字'
+            },
+            component: (resolve) => require(['./views/tools/toolsBazi.vue'], resolve)
+        }, {
             path: 'game',
             name: 'game',
             meta: {

@@ -43,4 +43,9 @@ export default [{
     name: '图片解析',
     icon: '/static/images/tools/img.png',
     stars: 5
+}, {
+    url: '/tools/bazi',
+    name: '五行、八字',
+    icon: '/static/images/tools/bazi.png',
+    stars: 5
 }];
