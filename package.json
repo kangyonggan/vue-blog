@@ -24,7 +24,7 @@
         "es6-promise": "^4.2.6",
         "iview": "^2.7.4",
         "iview-theme": "^1.1.0",
-        "jsoneditor": "^5.33.0",
+        "jsoneditor": "^9.5.6",
         "sql-formatter": "^2.3.2",
         "xml-formatter": "^1.1.0",
         "marked": "^0.6.2",
